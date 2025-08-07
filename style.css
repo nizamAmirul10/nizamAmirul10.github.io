@@ -1,6 +1,79 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     text-align: center;
-    padding-top: 100px;
+    background: #f8f9fa;
+    color: #333;
+  }
+  
+  header {
+    padding: 40px 20px;
+    background: #0077cc;
+    color: white;
+  }
+  
+  .profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: white;
+    color: #0077cc;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  
+  .btn:hover {
+    background: #e3e3e3;
+  }
+  
+  #projects {
+    padding: 40px 20px;
+  }
+  
+  .project-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+  }
+  
+  .project {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 280px;
+  }
+  
+  footer {
+    padding: 20px;
+    background: #222;
+    color: white;
+  }
+  
+  a {
+    color: inherit;
+  }
+  
+  @media (max-width: 600px) {
+    .project-list {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .project {
+      width: 90%;
+    }
   }
   
