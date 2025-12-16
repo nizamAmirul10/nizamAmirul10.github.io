@@ -1,31 +1,114 @@
 // Smooth scroll and active navigation
 document.addEventListener('DOMContentLoaded', function () {
-    // Navigation active state
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section');
 
-    // Intersection Observer for active nav
-    const observerOptions = {
-        threshold: 0.3,
-        rootMargin: '-100px 0px -50% 0px'
-    };
+    // =========================
+    // TAB SWITCHING FUNCTIONALITY
+    // =========================
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
 
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('active');
-                    }
-                });
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const targetTab = this.getAttribute('data-tab');
+
+            // Remove active class from all buttons and panels
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabPanels.forEach(panel => panel.classList.remove('active'));
+
+            // Add active class to clicked button
+            this.classList.add('active');
+
+            // Show corresponding panel with animation
+            const targetPanel = document.querySelector(`.tab-panel[data-tab="${targetTab}"]`);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+
+                // Smooth scroll to tab content
+                setTimeout(() => {
+                    targetPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
             }
-        });
-    }, observerOptions);
 
-    sections.forEach(section => {
-        observer.observe(section);
+            // Add click animation
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'tab-click 0.4s ease';
+            }, 10);
+        });
+    });
+
+    // Add tab click animation
+    const tabStyle = document.createElement('style');
+    tabStyle.textContent = `
+@keyframes tab - click {
+    0 % { transform: translateY(-5px) scale(1); }
+    50 % { transform: translateY(-8px) scale(1.05); }
+    100 % { transform: translateY(-5px) scale(1); }
+}
+`;
+    document.head.appendChild(tabStyle);
+
+    // =========================
+    // EXPERIENCE MODAL FUNCTIONALITY
+    // =========================
+    const modal = document.getElementById('experienceModal');
+    const modalContent = document.getElementById('modalContent');
+    const modalClose = document.querySelector('.modal-close');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const clickableCards = document.querySelectorAll('.timeline-card.clickable');
+
+    // Open modal and load content
+    clickableCards.forEach(card => {
+        card.addEventListener('click', function () {
+            const experienceId = this.getAttribute('data-experience');
+            loadExperienceDetail(experienceId);
+        });
+    });
+
+    function loadExperienceDetail(experienceId) {
+        // Show modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Load content
+        fetch(`experiences / ${experienceId}.html`)
+            .then(response => {
+                if (!response.ok) throw new Error('Content not found');
+                return response.text();
+            })
+            .then(html => {
+                modalContent.innerHTML = html;
+                modalContent.scrollTop = 0;
+            })
+            .catch(error => {
+                modalContent.innerHTML = `
+    < div class="experience-detail" >
+            <div class="detail-header">
+              <h2>Content Not Available</h2>
+            </div>
+            <div class="detail-body">
+              <p>Sorry, the detailed information for this experience is currently unavailable.</p>
+            </div>
+          </div >
+    `;
+                console.error('Error loading experience:', error);
+            });
+    }
+
+    // Close modal
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
     });
 
     // Scroll animations
@@ -49,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
         elements.forEach((element, index) => {
             element.style.opacity = '0';
             element.style.transform = 'translateY(30px)';
-            element.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            element.style.transition = `all 0.6s ease ${index * 0.1} s`;
         });
     };
 
@@ -123,47 +206,32 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add pop animation
     const style = document.createElement('style');
     style.textContent = `
-    @keyframes pop {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-  `;
+@keyframes pop {
+    0 % { transform: scale(1); }
+    50 % { transform: scale(1.1); }
+    100 % { transform: scale(1); }
+}
+`;
     document.head.appendChild(style);
 
-    // Typing effect for role (optional enhancement)
+    // Typing effect for role
     const roleElement = document.querySelector('.role');
-    const roleText = roleElement.textContent;
-    roleElement.textContent = '';
+    if (roleElement) {
+        const roleText = roleElement.textContent;
+        roleElement.textContent = '';
 
-    let charIndex = 0;
-    const typingSpeed = 100;
+        let charIndex = 0;
+        const typingSpeed = 100;
 
-    function typeRole() {
-        if (charIndex < roleText.length) {
-            roleElement.textContent += roleText.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeRole, typingSpeed);
-        }
-    }
-
-    // Start typing after a short delay
-    setTimeout(typeRole, 500);
-
-    // Smooth scroll for navigation links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+        function typeRole() {
+            if (charIndex < roleText.length) {
+                roleElement.textContent += roleText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeRole, typingSpeed);
             }
-        });
-    });
+        }
+
+        // Start typing after a short delay
+        setTimeout(typeRole, 500);
+    }
 });

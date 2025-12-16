@@ -14,16 +14,6 @@
 
 <body>
 
-  <!-- NAV -->
-  <header class="subhead">
-    <nav class="nav">
-      <a href="#home" class="nav-link active">Home</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#experience" class="nav-link">Experience</a>
-    </nav>
-  </header>
-
   <!-- HERO SECTION -->
   <section id="home" class="hero">
     <div class="hero-background">
@@ -86,183 +76,219 @@
     </div>
   </section>
 
-  <!-- ABOUT SECTION -->
-  <section id="about" class="about-section">
+  <!-- TAB NAVIGATION -->
+  <div class="tab-navigation">
     <div class="container">
-      <h2 class="section-title">About Me</h2>
-      <div class="about-content">
-        <p class="about-text">
-          Hello, I'm Nizam, a passionate developer with extensive experience in mobile application and web development.
-          I specialize in creating elegant solutions that combine functionality with beautiful design.
-        </p>
-
-        <div class="tech-stack">
-          <div class="tech-item">
-            <div class="tech-icon">💻</div>
-            <span>PHP</span>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">🎨</div>
-            <span>HTML/CSS</span>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">📱</div>
-            <span>Swift</span>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">🚀</div>
-            <span>Flutter</span>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">⚡</div>
-            <span>JavaScript</span>
-          </div>
-        </div>
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="about">
+          <span class="tab-title">About Me</span>
+        </button>
+        <button class="tab-btn" data-tab="services">
+          <span class="tab-title">Job</span>
+        </button>
+        <button class="tab-btn" data-tab="projects">
+          <span class="tab-title">Projects</span>
+        </button>
+        <button class="tab-btn" data-tab="experience">
+          <span class="tab-title">Experience</span>
+        </button>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- SERVICES SECTION -->
-  <section id="services" class="services-section">
-    <div class="container">
-      <h2 class="section-title">What I Do</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="3" y1="9" x2="21" y2="9"></line>
-              <line x1="9" y1="21" x2="9" y2="9"></line>
-            </svg>
-          </div>
-          <h3>UI Design</h3>
-          <p>Designing clean and user-friendly interfaces for web and mobile applications with modern aesthetics.</p>
-        </div>
+  <!-- TAB CONTENT CONTAINER -->
+  <div class="tab-content-wrapper">
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-section tab-panel active" data-tab="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <p class="about-text">
+            Hello, I'm Nizam, a passionate developer with extensive experience in mobile application and web
+            development.
+            I specialize in creating elegant solutions that combine functionality with beautiful design.
+          </p>
 
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
-            </svg>
-          </div>
-          <h3>Web Development</h3>
-          <p>Building responsive and dynamic websites using modern technologies and best practices.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-              <line x1="12" y1="18" x2="12.01" y2="18"></line>
-            </svg>
-          </div>
-          <h3>App Development</h3>
-          <p>Creating mobile apps for Android and iOS using Swift and Flutter frameworks.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS SECTION -->
-  <section id="projects" class="projects-section">
-    <div class="container">
-      <h2 class="section-title">Featured Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-header">
-            <div class="project-icon">🍄</div>
-            <h3>MushroomMate App</h3>
-          </div>
-          <p>Developed an AI-powered application that can distinguish between poisonous and edible mushrooms.
-            Delivered a fast AI engine to classify different species of mushrooms with high accuracy.</p>
-          <div class="project-tags">
-            <span class="tag">AI/ML</span>
-            <span class="tag">Mobile</span>
-            <span class="tag">Classification</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <div class="project-icon">📲</div>
-            <h3>MyIBJKM App</h3>
-          </div>
-          <p>Developing a comprehensive mobile application using Swift in Xcode. Currently in active development
-            with focus on user experience and performance optimization.</p>
-          <div class="project-tags">
-            <span class="tag">Swift</span>
-            <span class="tag">iOS</span>
-            <span class="tag">In Progress</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE SECTION -->
-  <section id="experience" class="experience-section">
-    <div class="container">
-      <div class="experience-grid">
-        <div class="experience-column">
-          <h2 class="section-title">Education</h2>
-
-          <div class="timeline-card">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>Engineering Foundation</h3>
-              <div class="institution">UiTM Dengkil Selangor</div>
-              <div class="period">2020 – 2021</div>
-              <p>The beginning of my journey into the Information Technology industry.</p>
+          <div class="tech-stack">
+            <div class="tech-item">
+              <div class="tech-icon">💻</div>
+              <span>PHP</span>
             </div>
-          </div>
-
-          <div class="timeline-card">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>Mobile Computing</h3>
-              <div class="institution">UiTM Kuala Terengganu, Terengganu</div>
-              <div class="period">2021 – 2025</div>
-              <p>Became an intermediate programmer with a Computer Science major.</p>
+            <div class="tech-item">
+              <div class="tech-icon">🎨</div>
+              <span>HTML/CSS</span>
             </div>
-          </div>
-        </div>
-
-        <div class="experience-column">
-          <h2 class="section-title">Work Experience</h2>
-
-          <div class="timeline-card">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>Mobile Developer Intern</h3>
-              <div class="institution">CS Leaflabs Sdn Bhd</div>
-              <div class="period">2024 – 2025</div>
-              <ul>
-                <li>Optimized performance and accessibility on existing apps</li>
-                <li>Designed new UI/UX for dashboard modules</li>
-                <li>Maintained and resolved backend system errors</li>
-                <li>Created new features for the application</li>
-              </ul>
+            <div class="tech-item">
+              <div class="tech-icon">📱</div>
+              <span>Swift</span>
             </div>
-          </div>
-
-          <div class="timeline-card">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>Solution Developer</h3>
-              <div class="institution">Zen Computer System Sdn Bhd</div>
-              <div class="period">2025 – present</div>
-              <ul>
-                <li>Built responsive websites (HTML/CSS/JS, PHP)</li>
-                <li>Created and improved existing systems</li>
-                <li>Added and removed features in MyIBJKM app</li>
-              </ul>
+            <div class="tech-item">
+              <div class="tech-icon">🚀</div>
+              <span>Flutter</span>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">⚡</div>
+              <span>JavaScript</span>
             </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="services-section tab-panel" data-tab="services">
+      <div class="container">
+        <h2 class="section-title">What I Do</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+            </div>
+            <h3>UI Design</h3>
+            <p>Designing clean and user-friendly interfaces for web and mobile applications with modern aesthetics.</p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3>Web Development</h3>
+            <p>Building responsive and dynamic websites using modern technologies and best practices.</p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+            </div>
+            <h3>App Development</h3>
+            <p>Creating mobile apps for Android and iOS using Swift and Flutter frameworks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="projects-section tab-panel" data-tab="projects">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-icon">🍄</div>
+              <h3>MushroomMate App</h3>
+            </div>
+            <p>Developed an AI-powered application that can distinguish between poisonous and edible mushrooms.
+              Delivered a fast AI engine to classify different species of mushrooms with high accuracy.</p>
+            <div class="project-tags">
+              <span class="tag">AI/ML</span>
+              <span class="tag">Mobile</span>
+              <span class="tag">Classification</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-icon">📲</div>
+              <h3>MyIBJKM App</h3>
+            </div>
+            <p>Developing a comprehensive mobile application using Swift in Xcode. Currently in active development
+              with focus on user experience and performance optimization.</p>
+            <div class="project-tags">
+              <span class="tag">Swift</span>
+              <span class="tag">iOS</span>
+              <span class="tag">In Progress</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="experience-section tab-panel" data-tab="experience">
+      <div class="container">
+        <div class="experience-grid">
+          <div class="experience-column">
+            <h2 class="section-title">Education</h2>
+
+            <div class="timeline-card clickable" data-experience="engineering-foundation">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Engineering Foundation <span class="click-hint">→</span></h3>
+                <div class="institution">UiTM Dengkil Selangor</div>
+                <div class="period">2020 – 2021</div>
+                <p>The beginning of my journey into the Information Technology industry.</p>
+              </div>
+            </div>
+
+            <div class="timeline-card clickable" data-experience="mobile-computing">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Mobile Computing <span class="click-hint">→</span></h3>
+                <div class="institution">UiTM Kuala Terengganu, Terengganu</div>
+                <div class="period">2021 – 2025</div>
+                <p>Became an intermediate programmer with a Computer Science major.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="experience-column">
+            <h2 class="section-title">Work Experience</h2>
+
+            <div class="timeline-card clickable" data-experience="mobile-developer-intern">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Mobile Developer Intern <span class="click-hint">→</span></h3>
+                <div class="institution">CS Leaflabs Sdn Bhd</div>
+                <div class="period">2024 – 2025</div>
+                <ul>
+                  <li>Optimized performance and accessibility on existing apps</li>
+                  <li>Designed new UI/UX for dashboard modules</li>
+                  <li>Maintained and resolved backend system errors</li>
+                  <li>Created new features for the application</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-card clickable" data-experience="solution-developer">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Solution Developer <span class="click-hint">→</span></h3>
+                <div class="institution">Zen Computer System Sdn Bhd</div>
+                <div class="period">2025 – present</div>
+                <ul>
+                  <li>Built responsive websites (HTML/CSS/JS, PHP)</li>
+                  <li>Created and improved existing systems</li>
+                  <li>Added and removed features in MyIBJKM app</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- End Tab Content Wrapper -->
+
+  <!-- EXPERIENCE MODAL -->
+  <div id="experienceModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <button class="modal-close">&times;</button>
+      <div class="modal-content" id="modalContent">
+        <!-- Content will be loaded here -->
+      </div>
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
