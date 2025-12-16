@@ -1,172 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shazlin Nizam | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
 
   <!-- NAV -->
   <header class="subhead">
     <nav class="nav">
-      <a href="#home" class="active">Home</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#experience" class="nav-link">Experience</a>
     </nav>
   </header>
 
-  <!-- HEADER / HERO -->
-  <header id="home" class="profile-header">
-    <div class="profile-info">
-      <span class="badge">Hello I’m</span>
-      <h1>Shazlin Nizam</h1>
-      <p class="role">Solution and Mobile Developer</p>
-      <p>📧 shazlinnizam@gmail.com</p>
-      <p>📱 +60 1163141004</p>
-      <p>📍 Cyberjaya, Malaysia</p>
+  <!-- HERO SECTION -->
+  <section id="home" class="hero">
+    <div class="hero-background">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
     </div>
-    <div class="profile-photo">
-      <img src="images/profile.jpg" alt="Shazlin Nizam">
-    </div>
-  </header>
 
-  <!-- ABOUT -->
-  <section id="about" class="about">
-    <h2>About Me</h2>
-    <p>Hello, I’m Nizam, a developer with experience in mobile application and web development.</p>
-    <div class="skills">
-      <span>php</span>
-      <span>html</span>
-      <span>css</span>
-      <span>swift</span>
-      <span>flutter</span>
-      <span>javascript</span>
-      <span>Angular</span>
-    </div>
-    <a href="Resume.pdf" class="btn" download>📄 Download CV</a>
-  </section>
+    <div class="hero-content">
+      <div class="profile-image-wrapper">
+        <div class="profile-glow"></div>
+        <img src="images/profile.jpg" alt="Shazlin Nizam" class="profile-image">
+      </div>
 
-  <!-- SERVICES -->
-  <section id="services" class="services">
-    <h2>What I Do</h2>
-    <div class="service-list">
-      <div class="service-card">
-        <h3>UI Design</h3>
-        <p>Designing clean and user-friendly interfaces for web and mobile.</p>
-      </div>
-      <div class="service-card">
-        <h3>Web Development</h3>
-        <p>Building responsive and dynamic websites using modern technologies.</p>
-      </div>
-      <div class="service-card">
-        <h3>App Development</h3>
-        <p>Creating mobile apps for andorid and iOS using Swift and Flutter.</p>
+      <div class="hero-text">
+        <span class="greeting">Hello, I'm</span>
+        <h1 class="name">Shazlin Nizam</h1>
+        <p class="role">Solution & Mobile Developer</p>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>shazlinnizam@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+              </path>
+            </svg>
+            <span>+60 1163141004</span>
+          </div>
+          <div class="contact-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Cyberjaya, Malaysia</span>
+          </div>
+        </div>
+
+        <a href="Resume.pdf" class="cta-button" download>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download CV
+        </a>
       </div>
     </div>
-  </section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="projects">
-    <h2>Featured Projects</h2>
-    <div class="project-list">
-      <div class="project-card">
-        <h3>MushroomMate App</h3>
-        <p>Develop an App that can distinguish poisonous and edible mushroom. Delivery a fast AI engine to classify different species of Mushrooms.</p>
-      </div>
-      <div class="project-card">
-        <h3>MyIBJKM App</h3>
-        <p>Develop in Xcode using Swift (on going).</p>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS (from skills.html) -->
-  <section id="skills" class="wrap grid-2">
-    <div>
-      <h2>Technical Skills</h2>
-      <div class="bar">
-        <span>JavaScript</span>
-        <div class="track"><div class="fill" style="width:80%"></div></div>
-      </div>
-      <div class="bar">
-        <span>Java</span>
-        <div class="track"><div class="fill" style="width:55%"></div></div>
-      </div>
-      <div class="bar">
-        <span>Python</span>
-        <div class="track"><div class="fill" style="width:75%"></div></div>
-      </div>
-      <div class="bar">
-        <span>PHP</span>
-        <div class="track"><div class="fill" style="width:45%"></div></div>
-      </div>
-      <div class="bar">
-        <span>SAC</span>
-        <div class="track"><div class="fill" style="width:60%"></div></div>
-      </div>
-    </div>
-  
-    <div>
-      <h2>Professional Skills</h2>
-      <div class="circles">
-        <div class="circle" style="--pct:80"><b>Communication</b></div>
-        <div class="circle" style="--pct:75"><b>Teamwork</b></div>
-        <div class="circle" style="--pct:70"><b>Project Management</b></div>
-        <div class="circle" style="--pct:85"><b>Creativity</b></div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- EXPERIENCE (from experience.html) -->
-  <section id="experience" class="wrap grid-2">
-    <div>
-      <h2>Education</h2>
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <p class="about-text">
+          Hello, I'm Nizam, a passionate developer with extensive experience in mobile application and web development.
+          I specialize in creating elegant solutions that combine functionality with beautiful design.
+        </p>
 
-      <article class="card">
-        <h3>Engineering Foundation </h3>
-        <em>UiTM Dengkil Selangor</em>
-        <div class="muted">2020 – 2021</div>
-        <p>It the beginning for me to thrive into Information Technology industry .</p>
-      </article>
-
-      <article class="card">
-        <h3>Mobile Computing</h3>
-        <em>UiTM Kuala Terengganu, Terengganu</em>
-        <div class="muted">2021 – 2025</div>
-        <p>Become intermediate programmer in Computer Science major.</p>
-      </article>
-    </div>
-
-    <div>
-      <h2>Work Experience</h2>
-
-      <article class="card">
-        <h3>Mobile Developer Intern<em>– CS Leaflabs Sdn Bhd</em></h3>
-        <div class="muted">2024 – 2025</div>
-        <p><i>Responsibilities</i></p>
-        <ul>
-          <li>Optimized performance and accessibility on Existing APP.</li>
-          <li>Design new UI/UX for dashboard modules for the APP.</li>
-          <li>Maintened and responsible to solve error in the backend of the system.</li>
-          <li>Create somes new features to the app.</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <h3>Solution Developer <em>– Zen Computer System Sdn Bhd</em></h3>
-        <div class="muted">2025 – present</div>
-        <p><i>Responsibilities</i></p>
-        <ul>
-          <li>Built responsive websites (HTML/CSS/JS, PHP).</li>
-          <li>Create and improves the systems.</li>
-          <li>Add additional and removes requested features into MyIBJKM app.</li>
-        </ul>
-      </article>
+        <div class="tech-stack">
+          <div class="tech-item">
+            <div class="tech-icon">💻</div>
+            <span>PHP</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">🎨</div>
+            <span>HTML/CSS</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">📱</div>
+            <span>Swift</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">🚀</div>
+            <span>Flutter</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">⚡</div>
+            <span>JavaScript</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- SERVICES SECTION -->
+  <section id="services" class="services-section">
+    <div class="container">
+      <h2 class="section-title">What I Do</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="9" y1="21" x2="9" y2="9"></line>
+            </svg>
+          </div>
+          <h3>UI Design</h3>
+          <p>Designing clean and user-friendly interfaces for web and mobile applications with modern aesthetics.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3>Web Development</h3>
+          <p>Building responsive and dynamic websites using modern technologies and best practices.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+          </div>
+          <h3>App Development</h3>
+          <p>Creating mobile apps for Android and iOS using Swift and Flutter frameworks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">🍄</div>
+            <h3>MushroomMate App</h3>
+          </div>
+          <p>Developed an AI-powered application that can distinguish between poisonous and edible mushrooms.
+            Delivered a fast AI engine to classify different species of mushrooms with high accuracy.</p>
+          <div class="project-tags">
+            <span class="tag">AI/ML</span>
+            <span class="tag">Mobile</span>
+            <span class="tag">Classification</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">📲</div>
+            <h3>MyIBJKM App</h3>
+          </div>
+          <p>Developing a comprehensive mobile application using Swift in Xcode. Currently in active development
+            with focus on user experience and performance optimization.</p>
+          <div class="project-tags">
+            <span class="tag">Swift</span>
+            <span class="tag">iOS</span>
+            <span class="tag">In Progress</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE SECTION -->
+  <section id="experience" class="experience-section">
+    <div class="container">
+      <div class="experience-grid">
+        <div class="experience-column">
+          <h2 class="section-title">Education</h2>
+
+          <div class="timeline-card">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>Engineering Foundation</h3>
+              <div class="institution">UiTM Dengkil Selangor</div>
+              <div class="period">2020 – 2021</div>
+              <p>The beginning of my journey into the Information Technology industry.</p>
+            </div>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>Mobile Computing</h3>
+              <div class="institution">UiTM Kuala Terengganu, Terengganu</div>
+              <div class="period">2021 – 2025</div>
+              <p>Became an intermediate programmer with a Computer Science major.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-column">
+          <h2 class="section-title">Work Experience</h2>
+
+          <div class="timeline-card">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>Mobile Developer Intern</h3>
+              <div class="institution">CS Leaflabs Sdn Bhd</div>
+              <div class="period">2024 – 2025</div>
+              <ul>
+                <li>Optimized performance and accessibility on existing apps</li>
+                <li>Designed new UI/UX for dashboard modules</li>
+                <li>Maintained and resolved backend system errors</li>
+                <li>Created new features for the application</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>Solution Developer</h3>
+              <div class="institution">Zen Computer System Sdn Bhd</div>
+              <div class="period">2025 – present</div>
+              <ul>
+                <li>Built responsive websites (HTML/CSS/JS, PHP)</li>
+                <li>Created and improved existing systems</li>
+                <li>Added and removed features in MyIBJKM app</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Shazlin Nizam. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
+
 </html>
