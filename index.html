@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shazlin Nizam | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="hero-modern.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -16,56 +17,111 @@
 
   <!-- HERO SECTION -->
   <section id="home" class="hero">
-    <div class="hero-background">
-      <div class="gradient-orb orb-1"></div>
-      <div class="gradient-orb orb-2"></div>
-      <div class="gradient-orb orb-3"></div>
+    <!-- Animated Code Background -->
+    <div class="code-background">
+      <canvas id="matrix-canvas"></canvas>
+    </div>
+
+    <!-- Floating Code Snippets -->
+    <div class="floating-code">
+      <div class="code-line">const developer = new SoftwareEngineer();</div>
+      <div class="code-line">function buildAmazingApps() { return true; }</div>
+      <div class="code-line">while(coding) { createSolutions(); }</div>
+      <div class="code-line">import { passion, skills } from './developer';</div>
+      <div class="code-line">git commit -m "Building the future"</div>
     </div>
 
     <div class="hero-content">
-      <div class="profile-image-wrapper">
-        <div class="profile-glow"></div>
-        <img src="images/profile.jpg" alt="Shazlin Nizam" class="profile-image">
+      <!-- Terminal Window -->
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-buttons">
+            <span class="btn-close"></span>
+            <span class="btn-minimize"></span>
+            <span class="btn-maximize"></span>
+          </div>
+          <div class="terminal-title">shazlin@developer:~</div>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="prompt">$</span>
+            <span class="command">whoami</span>
+          </div>
+          <div class="terminal-output">Shazlin Nizam - Solution & Mobile Developer</div>
+          <div class="terminal-line">
+            <span class="prompt">$</span>
+            <span class="command">cat skills.txt</span>
+          </div>
+          <div class="terminal-output">
+            <span class="skill-tag">Swift</span>
+            <span class="skill-tag">Flutter</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">HTML/CSS</span>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">$</span>
+            <span class="command typing-cursor">contact --info</span>
+          </div>
+        </div>
       </div>
 
-      <div class="hero-text">
-        <span class="greeting">Hello, I'm</span>
-        <h1 class="name">Shazlin Nizam</h1>
-        <p class="role">Solution & Mobile Developer</p>
-
-        <div class="contact-info">
-          <div class="contact-item">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-            <span>shazlinnizam@gmail.com</span>
-          </div>
-          <div class="contact-item">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path
-                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-              </path>
-            </svg>
-            <span>+60 1163141004</span>
-          </div>
-          <div class="contact-item">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            <span>Cyberjaya, Malaysia</span>
+      <!-- Profile Card -->
+      <div class="profile-card">
+        <div class="profile-image-wrapper">
+          <div class="profile-glow"></div>
+          <img src="images/profile.jpg" alt="Shazlin Nizam" class="profile-image">
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span class="status-text">Available for work</span>
           </div>
         </div>
 
-        <a href="Resume.pdf" class="cta-button" download>
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
-          Download CV
-        </a>
+        <div class="profile-info">
+          <h1 class="name">
+            <span class="code-bracket">&lt;</span>
+            Shazlin Nizam
+            <span class="code-bracket">/&gt;</span>
+          </h1>
+          <p class="role">
+            <span class="role-icon">⚡</span>
+            Solution & Mobile Developer
+          </p>
+
+          <div class="contact-grid">
+            <a href="mailto:shazlinnizam@gmail.com" class="contact-link">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>Email</span>
+            </a>
+            <a href="tel:+601163141004" class="contact-link">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
+              </svg>
+              <span>Phone</span>
+            </a>
+            <div class="contact-link">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Cyberjaya, MY</span>
+            </div>
+          </div>
+
+          <a href="Resume.pdf" class="cta-button" download>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download CV
+          </a>
+        </div>
       </div>
     </div>
 
@@ -73,6 +129,7 @@
       <div class="mouse">
         <div class="wheel"></div>
       </div>
+      <span>Scroll to explore</span>
     </div>
   </section>
 
