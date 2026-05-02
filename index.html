@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shazlin Nizam | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="profile-header">
+  <!-- NAV -->
+  <header class="subhead">
+    <nav class="nav">
+      <a href="#home" class="active">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+    </nav>
+  </header>
+
+  <!-- HEADER / HERO -->
+  <header id="home" class="profile-header">
     <div class="profile-info">
       <span class="badge">Hello I’m</span>
       <h1>Shazlin Nizam</h1>
-      <p class="role">iOS & Web Developer</p>
-      <p>📧 shazlin@example.com</p>
-      <p>📱 +60 12 345 6789</p>
-      <p>📍 Kuala Lumpur, Malaysia</p>
+      <p class="role">Solution and Mobile Developer</p>
+      <p>📧 shazlinnizam@gmail.com</p>
+      <p>📱 +60 1163141004</p>
+      <p>📍 Cyberjaya, Malaysia</p>
     </div>
     <div class="profile-photo">
       <img src="images/profile.jpg" alt="Shazlin Nizam">
@@ -24,9 +34,9 @@
   </header>
 
   <!-- ABOUT -->
-  <section class="about">
+  <section id="about" class="about">
     <h2>About Me</h2>
-    <p>Hello, I’m Shazlin, a developer with experience in iOS, Flutter, and web development.</p>
+    <p>Hello, I’m Nizam, a developer with experience in mobile application and web development.</p>
     <div class="skills">
       <span>php</span>
       <span>html</span>
@@ -34,12 +44,13 @@
       <span>swift</span>
       <span>flutter</span>
       <span>javascript</span>
+      <span>Angular</span>
     </div>
     <a href="Resume.pdf" class="btn" download>📄 Download CV</a>
   </section>
 
   <!-- SERVICES -->
-  <section class="services">
+  <section id="services" class="services">
     <h2>What I Do</h2>
     <div class="service-list">
       <div class="service-card">
@@ -52,23 +63,108 @@
       </div>
       <div class="service-card">
         <h3>App Development</h3>
-        <p>Creating mobile apps for iOS using Swift and Flutter.</p>
+        <p>Creating mobile apps for andorid and iOS using Swift and Flutter.</p>
       </div>
     </div>
   </section>
 
   <!-- PROJECTS -->
-  <section class="projects">
+  <section id="projects" class="projects">
     <h2>Featured Projects</h2>
     <div class="project-list">
       <div class="project-card">
-        <h3>Portfolio Website</h3>
-        <p>Personal portfolio built with HTML, CSS, and GitHub Pages.</p>
+        <h3>MushroomMate App</h3>
+        <p>Develop an App that can distinguish poisonous and edible mushroom. Delivery a fast AI engine to classify different species of Mushrooms.</p>
       </div>
       <div class="project-card">
-        <h3>Mobile App</h3>
-        <p>iOS app using SwiftUI and Firebase backend.</p>
+        <h3>MyIBJKM App</h3>
+        <p>Develop in Xcode using Swift (on going).</p>
       </div>
+    </div>
+  </section>
+
+  <!-- SKILLS (from skills.html) -->
+  <section id="skills" class="wrap grid-2">
+    <div>
+      <h2>Technical Skills</h2>
+      <div class="bar">
+        <span>JavaScript</span>
+        <div class="track"><div class="fill" style="width:80%"></div></div>
+      </div>
+      <div class="bar">
+        <span>Java</span>
+        <div class="track"><div class="fill" style="width:55%"></div></div>
+      </div>
+      <div class="bar">
+        <span>Python</span>
+        <div class="track"><div class="fill" style="width:75%"></div></div>
+      </div>
+      <div class="bar">
+        <span>PHP</span>
+        <div class="track"><div class="fill" style="width:45%"></div></div>
+      </div>
+      <div class="bar">
+        <span>SAC</span>
+        <div class="track"><div class="fill" style="width:60%"></div></div>
+      </div>
+    </div>
+  
+    <div>
+      <h2>Professional Skills</h2>
+      <div class="circles">
+        <div class="circle" style="--pct:80"><b>Communication</b></div>
+        <div class="circle" style="--pct:75"><b>Teamwork</b></div>
+        <div class="circle" style="--pct:70"><b>Project Management</b></div>
+        <div class="circle" style="--pct:85"><b>Creativity</b></div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- EXPERIENCE (from experience.html) -->
+  <section id="experience" class="wrap grid-2">
+    <div>
+      <h2>Education</h2>
+
+      <article class="card">
+        <h3>Engineering Foundation </h3>
+        <em>UiTM Dengkil Selangor</em>
+        <div class="muted">2020 – 2021</div>
+        <p>It the beginning for me to thrive into Information Technology industry .</p>
+      </article>
+
+      <article class="card">
+        <h3>Mobile Computing</h3>
+        <em>UiTM Kuala Terengganu, Terengganu</em>
+        <div class="muted">2021 – 2025</div>
+        <p>Become intermediate programmer in Computer Science major.</p>
+      </article>
+    </div>
+
+    <div>
+      <h2>Work Experience</h2>
+
+      <article class="card">
+        <h3>Mobile Developer Intern<em>– CS Leaflabs Sdn Bhd</em></h3>
+        <div class="muted">2024 – 2025</div>
+        <p><i>Responsibilities</i></p>
+        <ul>
+          <li>Optimized performance and accessibility on Existing APP.</li>
+          <li>Design new UI/UX for dashboard modules for the APP.</li>
+          <li>Maintened and responsible to solve error in the backend of the system.</li>
+          <li>Create somes new features to the app.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Solution Developer <em>– Zen Computer System Sdn Bhd</em></h3>
+        <div class="muted">2025 – present</div>
+        <p><i>Responsibilities</i></p>
+        <ul>
+          <li>Built responsive websites (HTML/CSS/JS, PHP).</li>
+          <li>Create and improves the systems.</li>
+          <li>Add additional and removes requested features into MyIBJKM app.</li>
+        </ul>
+      </article>
     </div>
   </section>
 
