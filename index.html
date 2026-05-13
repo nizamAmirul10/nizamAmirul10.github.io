@@ -22,16 +22,9 @@
       <canvas id="matrix-canvas"></canvas>
     </div>
 
-    <!-- Floating Code Snippets -->
-    <div class="floating-code">
-      <div class="code-line">const developer = new SoftwareEngineer();</div>
-      <div class="code-line">function buildAmazingApps() { return true; }</div>
-      <div class="code-line">while(coding) { createSolutions(); }</div>
-      <div class="code-line">import { passion, skills } from './developer';</div>
-      <div class="code-line">git commit -m "Building the future"</div>
-    </div>
-
     <div class="hero-content">
+      <!-- Left Stack: Terminal + Phone Nav -->
+      <div class="hero-left-stack">
       <!-- Terminal Window -->
       <div class="terminal-window">
         <div class="terminal-header">
@@ -45,26 +38,85 @@
         <div class="terminal-body">
           <div class="terminal-line">
             <span class="prompt">$</span>
-            <span class="command">whoami</span>
+            <span class="command">printf "Hello world"</span>
           </div>
-          <div class="terminal-output">Shazlin Nizam - Solution & Mobile Developer</div>
+          <div class="terminal-output">Hello world</div>
           <div class="terminal-line">
             <span class="prompt">$</span>
-            <span class="command">cat skills.txt</span>
+            <span class="command">status --availability</span>
           </div>
           <div class="terminal-output">
-            <span class="skill-tag">Swift</span>
-            <span class="skill-tag">Flutter</span>
-            <span class="skill-tag">PHP</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">HTML/CSS</span>
+            <span class="status-ok">✓</span> Open to new opportunities
           </div>
           <div class="terminal-line">
             <span class="prompt">$</span>
-            <span class="command typing-cursor">contact --info</span>
+            <span class="command typing-cursor"></span>
           </div>
         </div>
       </div>
+
+      <!-- Phone Nav (Flutter-themed) -->
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-status-bar">
+            <span class="phone-time">9:41</span>
+            <div class="phone-status-icons">
+              <svg class="status-icon" viewBox="0 0 18 12" fill="currentColor" aria-hidden="true">
+                <rect x="0" y="9" width="3" height="3" rx="0.5"></rect>
+                <rect x="5" y="6" width="3" height="6" rx="0.5"></rect>
+                <rect x="10" y="3" width="3" height="9" rx="0.5"></rect>
+                <rect x="15" y="0" width="3" height="12" rx="0.5"></rect>
+              </svg>
+              <svg class="status-icon" viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                <path d="M2 7a16 16 0 0 1 20 0"></path>
+                <path d="M5.5 11a11 11 0 0 1 13 0"></path>
+                <path d="M9 14.5a6 6 0 0 1 6 0"></path>
+                <circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"></circle>
+              </svg>
+              <svg class="status-icon status-battery" viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+                <rect x="0.5" y="0.5" width="22" height="11" rx="2"></rect>
+                <rect x="2" y="2" width="19" height="8" rx="1" fill="currentColor" stroke="none"></rect>
+                <line x1="24" y1="4" x2="24" y2="8" stroke-width="2" stroke-linecap="round"></line>
+              </svg>
+            </div>
+          </div>
+          <div class="phone-greeting">~ tap to explore ~</div>
+          <div class="phone-home-grid">
+            <a href="about.html" target="_blank" rel="noopener" class="phone-app app-about">
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <span class="app-label">About</span>
+            </a>
+            <a href="projects.html" target="_blank" rel="noopener" class="phone-app app-projects">
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                  <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                </svg>
+              </div>
+              <span class="app-label">Projects</span>
+            </a>
+            <a href="work.html" target="_blank" rel="noopener" class="phone-app app-work">
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+              <span class="app-label">Work</span>
+            </a>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+      </div>
+      <!-- /hero-left-stack -->
 
       <!-- Profile Card -->
       <div class="profile-card">
@@ -87,265 +139,55 @@
             <span class="role-icon">⚡</span>
             Solution & Mobile Developer
           </p>
+          <p class="tagline">
+            I build mobile apps for both iPhone and Android — including a published government app .
+          </p>
 
           <div class="contact-grid">
-            <a href="mailto:shazlinnizam@gmail.com" class="contact-link">
+            <button type="button" class="contact-link contact-toggle" data-default="Email" data-revealed="shazlinnizam@gmail.com">
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
-              <span>Email</span>
-            </a>
-            <a href="tel:+601163141004" class="contact-link">
+              <span class="contact-text">Email</span>
+            </button>
+            <button type="button" class="contact-link contact-toggle" data-default="Phone" data-revealed="011-6314-1004">
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path
                   d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                 </path>
               </svg>
-              <span>Phone</span>
+              <span class="contact-text">Phone</span>
+            </button>
+            <a href="https://www.linkedin.com/in/shazlin-nizam-a-072967308/" class="contact-link" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+              <span>LinkedIn</span>
             </a>
-            <div class="contact-link">
+          </div>
+
+          <div class="cta-group">
+            <a href="Resume.pdf" class="cta-button" download>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
-              <span>Cyberjaya, MY</span>
-            </div>
+              Download CV
+            </a>
+            <a href="https://wa.me/601163141004?text=Hi%20Nizam%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20chat." class="cta-button cta-secondary" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+              Chat on WhatsApp
+            </a>
           </div>
-
-          <a href="Resume.pdf" class="cta-button" download>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            Download CV
-          </a>
         </div>
       </div>
     </div>
 
-    <div class="scroll-indicator">
-      <div class="mouse">
-        <div class="wheel"></div>
-      </div>
-      <span>Scroll to explore</span>
-    </div>
   </section>
-
-  <!-- TAB NAVIGATION -->
-  <div class="tab-navigation">
-    <div class="container">
-      <div class="tab-buttons">
-        <button class="tab-btn active" data-tab="about">
-          <span class="tab-title">About Me</span>
-        </button>
-        <button class="tab-btn" data-tab="services">
-          <span class="tab-title">Job</span>
-        </button>
-        <button class="tab-btn" data-tab="projects">
-          <span class="tab-title">Projects</span>
-        </button>
-        <button class="tab-btn" data-tab="experience">
-          <span class="tab-title">Experience</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAB CONTENT CONTAINER -->
-  <div class="tab-content-wrapper">
-    <!-- ABOUT SECTION -->
-    <section id="about" class="about-section tab-panel active" data-tab="about">
-      <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-          <p class="about-text">
-            Hello, I'm Nizam, a passionate developer with extensive experience in mobile application and web
-            development.
-            I specialize in creating elegant solutions that combine functionality with beautiful design.
-          </p>
-
-          <div class="tech-stack">
-            <div class="tech-item">
-              <div class="tech-icon">💻</div>
-              <span>PHP</span>
-            </div>
-            <div class="tech-item">
-              <div class="tech-icon">🎨</div>
-              <span>HTML/CSS</span>
-            </div>
-            <div class="tech-item">
-              <div class="tech-icon">📱</div>
-              <span>Swift</span>
-            </div>
-            <div class="tech-item">
-              <div class="tech-icon">🚀</div>
-              <span>Flutter</span>
-            </div>
-            <div class="tech-item">
-              <div class="tech-icon">⚡</div>
-              <span>JavaScript</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES SECTION -->
-    <section id="services" class="services-section tab-panel" data-tab="services">
-      <div class="container">
-        <h2 class="section-title">What I Do</h2>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="3" y1="9" x2="21" y2="9"></line>
-                <line x1="9" y1="21" x2="9" y2="9"></line>
-              </svg>
-            </div>
-            <h3>UI Design</h3>
-            <p>Designing clean and user-friendly interfaces for web and mobile applications with modern aesthetics.</p>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="16 18 22 12 16 6"></polyline>
-                <polyline points="8 6 2 12 8 18"></polyline>
-              </svg>
-            </div>
-            <h3>Web Development</h3>
-            <p>Building responsive and dynamic websites using modern technologies and best practices.</p>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                <line x1="12" y1="18" x2="12.01" y2="18"></line>
-              </svg>
-            </div>
-            <h3>App Development</h3>
-            <p>Creating mobile apps for Android and iOS using Swift and Flutter frameworks.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS SECTION -->
-    <section id="projects" class="projects-section tab-panel" data-tab="projects">
-      <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-          <div class="project-card">
-            <div class="project-header">
-              <div class="project-icon">🍄</div>
-              <h3>MushroomMate App</h3>
-            </div>
-            <p>Developed an AI-powered application that can distinguish between poisonous and edible mushrooms.
-              Delivered a fast AI engine to classify different species of mushrooms with high accuracy.</p>
-            <div class="project-tags">
-              <span class="tag">AI/ML</span>
-              <span class="tag">Mobile</span>
-              <span class="tag">Classification</span>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-header">
-              <div class="project-icon">📲</div>
-              <h3>MyIBJKM App</h3>
-            </div>
-            <p>Developing a comprehensive mobile application using Swift in Xcode. Currently in active development
-              with focus on user experience and performance optimization.</p>
-            <div class="project-tags">
-              <span class="tag">Swift</span>
-              <span class="tag">iOS</span>
-              <span class="tag">In Progress</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE SECTION -->
-    <section id="experience" class="experience-section tab-panel" data-tab="experience">
-      <div class="container">
-        <div class="experience-grid">
-          <div class="experience-column">
-            <h2 class="section-title">Education</h2>
-
-            <div class="timeline-card clickable" data-experience="engineering-foundation">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>Engineering Foundation <span class="click-hint">→</span></h3>
-                <div class="institution">UiTM Dengkil Selangor</div>
-                <div class="period">2020 – 2021</div>
-                <p>The beginning of my journey into the Information Technology industry.</p>
-              </div>
-            </div>
-
-            <div class="timeline-card clickable" data-experience="mobile-computing">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>Mobile Computing <span class="click-hint">→</span></h3>
-                <div class="institution">UiTM Kuala Terengganu, Terengganu</div>
-                <div class="period">2021 – 2025</div>
-                <p>Became an intermediate programmer with a Computer Science major.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="experience-column">
-            <h2 class="section-title">Work Experience</h2>
-
-            <div class="timeline-card clickable" data-experience="mobile-developer-intern">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>Mobile Developer Intern <span class="click-hint">→</span></h3>
-                <div class="institution">CS Leaflabs Sdn Bhd</div>
-                <div class="period">2024 – 2025</div>
-                <ul>
-                  <li>Optimized performance and accessibility on existing apps</li>
-                  <li>Designed new UI/UX for dashboard modules</li>
-                  <li>Maintained and resolved backend system errors</li>
-                  <li>Created new features for the application</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="timeline-card clickable" data-experience="solution-developer">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>Solution Developer <span class="click-hint">→</span></h3>
-                <div class="institution">Zen Computer System Sdn Bhd</div>
-                <div class="period">2025 – present</div>
-                <ul>
-                  <li>Built responsive websites (HTML/CSS/JS, PHP)</li>
-                  <li>Created and improved existing systems</li>
-                  <li>Added and removed features in MyIBJKM app</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-  <!-- End Tab Content Wrapper -->
-
-  <!-- EXPERIENCE MODAL -->
-  <div id="experienceModal" class="modal">
-    <div class="modal-overlay"></div>
-    <div class="modal-container">
-      <button class="modal-close">&times;</button>
-      <div class="modal-content" id="modalContent">
-        <!-- Content will be loaded here -->
-      </div>
-    </div>
-  </div>
 
   <!-- FOOTER -->
   <footer class="footer">

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Shazlin Nizam</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="hero-modern.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- TOP NAV -->
+  <div class="subhead">
+    <nav class="nav">
+      <a href="index.html" class="nav-link">← Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="projects.html" class="nav-link active">Projects</a>
+      <a href="work.html" class="nav-link">Work</a>
+    </nav>
+  </div>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid">
+        <!-- PROJECT 1: MushroomMate -->
+        <div class="project-card visual-card" data-project="mushroommate">
+          <div class="project-image project-image-dual">
+            <img src="assets/mushroommate/splash.jpg" alt="MushroomMate splash screen" />
+            <img src="assets/mushroommate/landing.jpg" alt="MushroomMate landing screen" />
+            <div class="project-overlay"><span class="view-cta">View Details →</span></div>
+          </div>
+          <div class="project-body">
+            <div class="project-header">
+              <h3>MushroomMate</h3>
+              <span class="project-status status-academic">FYP Project</span>
+            </div>
+            <p class="project-impact">
+              <strong>350+</strong> species classified
+              <span class="impact-divider">·</span>
+              <strong>95%</strong> accuracy
+            </p>
+            <p class="project-desc">AI-powered mobile app that distinguishes poisonous from edible mushrooms in real time using Convolutional Neural Network(CNN) Algorithm.</p>
+            <div class="project-tags">
+              <span class="tag">AI/ML</span>
+              <span class="tag">Flutter</span>
+              <span class="tag">CNN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 2: MyIBJKM -->
+        <div class="project-card visual-card" data-project="myibjkm">
+          <div class="project-image project-image-dual">
+            <img src="assets/myibjkm/ib1.png" alt="MyIBJKM screen 1" class="fit-top" />
+            <img src="assets/myibjkm/ib2.png" alt="MyIBJKM screen 2" />
+            <div class="project-overlay"><span class="view-cta">View Details →</span></div>
+          </div>
+          <div class="project-body">
+            <div class="project-header">
+              <h3>MyIBJKM</h3>
+              <span class="project-status status-shipped">Published</span>
+            </div>
+            <p class="project-impact">
+              <strong>iOS</strong> + <strong>Android</strong>
+              <span class="impact-divider">·</span>
+              <strong>Native</strong> (separate codebases)
+            </p>
+            <p class="project-desc">Comprehensive mobile application built natively for both iOS (SwiftUI in Xcode) and Android (Java in Android Studio), with platform-specific UX and performance optimization.</p>
+            <div class="project-tags">
+              <span class="tag">SwiftUI</span>
+              <span class="tag">Java</span>
+              <span class="tag">iOS</span>
+              <span class="tag">Android</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 3: SKALA 2.0 -->
+        <div class="project-card visual-card" data-project="skala">
+          <div class="project-image project-image-dual">
+            <img src="assets/skala%202.0/s1.png" alt="SKALA 2.0 login screen" />
+            <img src="assets/skala%202.0/s2.png" alt="SKALA 2.0 dashboard" />
+            <div class="project-overlay"><span class="view-cta">View Details →</span></div>
+          </div>
+          <div class="project-body">
+            <div class="project-header">
+              <h3>SKALA 2.0</h3>
+              <span class="project-status status-progress">In Progress</span>
+            </div>
+            <p class="project-impact">
+              <strong>iOS</strong> + <strong>Android</strong>
+              <span class="impact-divider">·</span>
+              Single codebase · BLoC
+            </p>
+            <p class="project-desc">Cross-platform monitoring app for Jabatan Kerja Raya (JKR) to track project status and progress in real time. Built with Flutter using the BLoC pattern for clean state management — one codebase delivering native experiences on iOS and Android.</p>
+            <div class="project-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">BLoC</span>
+              <span class="tag">iOS</span>
+              <span class="tag">Android</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAIL PANE: MushroomMate -->
+        <div class="project-detail-pane" data-project="mushroommate">
+          <button class="detail-close" aria-label="Close detail">&times;</button>
+          <div class="detail-images">
+            <img src="assets/mushroommate/splash.jpg" alt="MushroomMate splash screen" />
+            <img src="assets/mushroommate/landing.jpg" alt="MushroomMate landing screen" />
+          </div>
+          <div class="detail-body">
+            <div class="detail-header">
+              <h2>MushroomMate</h2>
+              <span class="project-status status-academic">FYP Project</span>
+            </div>
+            <p class="project-impact">
+              <strong>350+</strong> species classified
+              <span class="impact-divider">·</span>
+              <strong>95%</strong> accuracy
+            </p>
+            <div class="detail-section">
+              <h3>Overview</h3>
+              <p>AI-powered mobile app that distinguishes poisonous from edible mushrooms in real time. Built as my Final Year Project, the app uses a Convolutional Neural Network (CNN) trained on 350+ species, achieving ~95% classification accuracy on the test set.</p>
+            </div>
+            <div class="detail-section">
+              <h3>Tech Stack</h3>
+              <div class="project-tags">
+                <span class="tag">AI/ML</span>
+                <span class="tag">Flutter</span>
+                <span class="tag">CNN</span>
+              </div>
+            </div>
+            <div class="detail-section">
+              <a href="https://youtu.be/MQzuuBVapsY" class="cta-button" target="_blank" rel="noopener">
+                Watch Demo on YouTube →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAIL PANE: MyIBJKM -->
+        <div class="project-detail-pane" data-project="myibjkm">
+          <button class="detail-close" aria-label="Close detail">&times;</button>
+          <div class="detail-images">
+            <img src="assets/myibjkm/ib1.png" alt="MyIBJKM screen 1" />
+            <img src="assets/myibjkm/ib2.png" alt="MyIBJKM screen 2" />
+          </div>
+          <div class="detail-body">
+            <div class="detail-header">
+              <h2>MyIBJKM</h2>
+              <span class="project-status status-shipped">Published</span>
+            </div>
+            <p class="project-impact">
+              <strong>iOS</strong> + <strong>Android</strong>
+              <span class="impact-divider">·</span>
+              <strong>Native</strong> (separate codebases)
+            </p>
+            <div class="detail-section">
+              <h3>Overview</h3>
+              <p>Comprehensive mobile application built natively for both iOS (SwiftUI in Xcode) and Android (Java in Android Studio), with platform-specific UX and performance optimization.</p>
+            </div>
+            <div class="detail-section">
+              <h3>Tech Stack</h3>
+              <div class="project-tags">
+                <span class="tag">SwiftUI</span>
+                <span class="tag">Java</span>
+                <span class="tag">iOS</span>
+                <span class="tag">Android</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAIL PANE: SKALA 2.0 -->
+        <div class="project-detail-pane" data-project="skala">
+          <button class="detail-close" aria-label="Close detail">&times;</button>
+          <div class="detail-images">
+            <img src="assets/skala%202.0/s1.png" alt="SKALA 2.0 login screen" />
+            <img src="assets/skala%202.0/s2.png" alt="SKALA 2.0 dashboard" />
+          </div>
+          <div class="detail-body">
+            <div class="detail-header">
+              <h2>SKALA 2.0</h2>
+              <span class="project-status status-progress">In Progress</span>
+            </div>
+            <p class="project-impact">
+              <strong>iOS</strong> + <strong>Android</strong>
+              <span class="impact-divider">·</span>
+              Single codebase · BLoC
+            </p>
+            <div class="detail-section">
+              <h3>Overview</h3>
+              <p>Cross-platform monitoring app for Jabatan Kerja Raya (JKR) to track project status and progress in real time. Built with Flutter using the BLoC pattern for clean state management — one codebase delivering native experiences on iOS and Android.</p>
+            </div>
+            <div class="detail-section">
+              <h3>Tech Stack</h3>
+              <div class="project-tags">
+                <span class="tag">Flutter</span>
+                <span class="tag">BLoC</span>
+                <span class="tag">iOS</span>
+                <span class="tag">Android</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Shazlin Nizam. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

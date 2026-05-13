@@ -1,6 +1,14 @@
 // =========================
 // MATRIX CANVAS ANIMATION
 // =========================
+let heroMouseX = -9999;
+let heroMouseY = -9999;
+
+window.addEventListener('mousemove', (e) => {
+    heroMouseX = e.clientX;
+    heroMouseY = e.clientY;
+});
+
 const canvas = document.getElementById('matrix-canvas');
 if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -13,6 +21,8 @@ if (canvas) {
     const fontSize = 14;
     const columns = canvas.width / fontSize;
     const drops = [];
+    const brushRadius = 150;
+    const brushStrength = 70;
 
     for (let i = 0; i < columns; i++) {
         drops[i] = Math.random() * -100;
@@ -27,7 +37,23 @@ if (canvas) {
 
         for (let i = 0; i < drops.length; i++) {
             const text = charArray[Math.floor(Math.random() * charArray.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            let x = i * fontSize;
+            let y = drops[i] * fontSize;
+
+            const dx = x - heroMouseX;
+            const dy = y - heroMouseY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < brushRadius && dist > 0.001) {
+                // Push character outward from cursor (brush) + jitter for "messup"
+                const force = 1 - dist / brushRadius;
+                x += (dx / dist) * force * brushStrength;
+                y += (dy / dist) * force * brushStrength;
+                x += (Math.random() - 0.5) * force * 10;
+                y += (Math.random() - 0.5) * force * 10;
+            }
+
+            ctx.fillText(text, x, y);
 
             if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                 drops[i] = 0;
@@ -68,11 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetPanel = document.querySelector(`.tab-panel[data-tab="${targetTab}"]`);
             if (targetPanel) {
                 targetPanel.classList.add('active');
-
-                // Smooth scroll to tab content
-                setTimeout(() => {
-                    targetPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
             }
 
             // Add click animation
@@ -117,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.style.overflow = 'hidden';
 
         // Load content
-        fetch(`experiences / ${experienceId}.html`)
+        fetch(`experiences/${experienceId}.html`)
             .then(response => {
                 if (!response.ok) throw new Error('Content not found');
                 return response.text();
@@ -147,12 +168,12 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.style.overflow = '';
     }
 
-    modalClose.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', closeModal);
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
 
     // Close on Escape key
     document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
             closeModal();
         }
     });
@@ -189,15 +210,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Navbar background on scroll
     const subhead = document.querySelector('.subhead');
-    window.addEventListener('scroll', function () {
-        if (window.scrollY > 50) {
-            subhead.style.background = 'rgba(15, 23, 42, 0.95)';
-            subhead.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
-        } else {
-            subhead.style.background = 'rgba(15, 23, 42, 0.8)';
-            subhead.style.boxShadow = 'none';
-        }
-    });
+    if (subhead) {
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                subhead.style.background = 'rgba(15, 23, 42, 0.95)';
+                subhead.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                subhead.style.background = 'rgba(15, 23, 42, 0.8)';
+                subhead.style.boxShadow = 'none';
+            }
+        });
+    }
 
     // Interactive cursor effect for cards
     const cards = document.querySelectorAll('.service-card, .project-card');
@@ -219,6 +242,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
         card.addEventListener('mouseleave', function () {
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
+    });
+
+    // =========================
+    // PROJECT CARD DETAIL TOGGLE (inline master / detail)
+    // — clicking a card hides the others and reveals its detail pane on the right
+    // — clicking the close (×) restores the grid
+    // =========================
+    const projectsGrid = document.querySelector('.projects-grid');
+
+    if (projectsGrid) {
+        document.querySelectorAll('.project-card[data-project]').forEach(card => {
+            card.addEventListener('click', () => {
+                const projectId = card.dataset.project;
+
+                projectsGrid.classList.add('detail-mode');
+
+                document.querySelectorAll('.project-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+
+                document.querySelectorAll('.project-detail-pane').forEach(p => p.classList.remove('active'));
+                const target = document.querySelector(`.project-detail-pane[data-project="${projectId}"]`);
+                if (target) target.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.detail-close').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                projectsGrid.classList.remove('detail-mode');
+                document.querySelectorAll('.project-card').forEach(c => c.classList.remove('selected'));
+                document.querySelectorAll('.project-detail-pane').forEach(p => p.classList.remove('active'));
+            });
+        });
+    }
+
+    // =========================
+    // CONTACT TILE TOGGLE (Email / Phone)
+    // — clicking reveals the address/number; clicking again hides it
+    // =========================
+    document.querySelectorAll('.contact-toggle').forEach(btn => {
+        const span = btn.querySelector('.contact-text');
+        const original = btn.dataset.default;
+        const revealed = btn.dataset.revealed;
+        btn.addEventListener('click', () => {
+            const isRevealed = btn.classList.toggle('revealed');
+            span.textContent = isRevealed ? revealed : original;
         });
     });
 

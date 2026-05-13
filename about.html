@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me | Shazlin Nizam</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="hero-modern.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- TOP NAV -->
+  <div class="subhead">
+    <nav class="nav">
+      <a href="index.html" class="nav-link">← Home</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="work.html" class="nav-link">Work</a>
+    </nav>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <p class="about-text">
+          Hello, I'm Nizam, a passionate developer with extensive experience in mobile application and web
+          development.
+          I specialize in creating elegant solutions that combine functionality with beautiful design.
+        </p>
+
+        <div class="tech-stack">
+          <div class="tech-item">
+            <div class="tech-icon">💻</div>
+            <span>PHP</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">🎨</div>
+            <span>HTML/CSS</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">📱</div>
+            <span>Swift</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">🚀</div>
+            <span>Flutter</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">⚡</div>
+            <span>JavaScript</span>
+          </div>
+        </div>
+
+        <!-- EDUCATION (merged into About) -->
+        <h3 class="about-subtitle">Education</h3>
+        <div class="timeline-list">
+          <div class="timeline-card clickable" data-experience="education/engineering-foundation">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>Engineering Foundation <span class="click-hint">→</span></h3>
+              <div class="institution">UiTM Dengkil Selangor</div>
+              <div class="period">2020 – 2021</div>
+              <p>The beginning of my journey into the Information Technology industry.</p>
+            </div>
+          </div>
+
+          <div class="timeline-card clickable" data-experience="education/mobile-computing">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>Mobile Computing <span class="click-hint">→</span></h3>
+              <div class="institution">UiTM Kuala Terengganu, Terengganu</div>
+              <div class="period">2021 – 2025</div>
+              <p>Became an intermediate programmer with a Computer Science major.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TESTIMONIAL -->
+        <div class="testimonial-card">
+          <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+          </svg>
+          <p class="testimonial-quote">
+            "Why build an app? I think because we have to be able to create long-lasting relationships with our users. We need to be able to not only offer services that we create but to actually listen to the user in every step"
+          </p>
+          <div class="testimonial-author">
+            <img src="images/testimonial-1.jpg" alt="Supervisor"
+              onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0'" />
+            <div class="testimonial-author-info">
+              <strong>Joaquín Flores</strong>
+              <span>Global Online Vice President at Kavak</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE MODAL -->
+  <div id="experienceModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <button class="modal-close">&times;</button>
+      <div class="modal-content" id="modalContent">
+        <!-- Content will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Shazlin Nizam. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
