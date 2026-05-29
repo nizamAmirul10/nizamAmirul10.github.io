@@ -1,0 +1,10 @@
+# Sensitive personal documents — never deploy
+Resume.pdf
+*.cv.pdf
+CV.pdf
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

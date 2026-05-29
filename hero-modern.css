@@ -4,20 +4,32 @@
 
 /* Override base hero styles */
 .hero {
-    background: #0a0e27 !important;
+    /* Transparent so the site-wide pixel BG shows through */
+    background: transparent !important;
 }
 
-/* Matrix Code Background */
-.code-background {
-    position: absolute;
-    inset: 0;
+/* Cursor-reactive pixel grid background — site-wide, fixed to viewport */
+.pixel-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Ensure all main page content stacks above the pixel BG */
+.hero,
+.about-section,
+.projects-section,
+.work-section,
+.featured-section,
+.explore-section,
+.footer,
+.container {
+    position: relative;
     z-index: 1;
-}
-
-#matrix-canvas {
-    width: 100%;
-    height: 100%;
-    opacity: 0.15;
 }
 
 /* Floating Code Snippets */
@@ -140,6 +152,14 @@
     border: 1px solid rgba(99, 102, 241, 0.3);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
+    /* Match the profile card's visual weight so they pair as equal pillars */
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-window .terminal-body {
+    flex: 1;
 }
 
 .terminal-header {
@@ -231,6 +251,24 @@
     color: #22c55e;
     font-weight: bold;
     margin-right: 0.4rem;
+}
+
+.term-tag {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    margin: 0.15rem 0.3rem 0.15rem 0;
+    border-radius: 4px;
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--primary-light);
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.term-bullet {
+    color: var(--accent);
+    margin-right: 0.5rem;
+    font-weight: bold;
 }
 
 .skill-tag {
@@ -579,6 +617,61 @@ button.contact-link {
     background: rgba(255, 255, 255, 0.4);
     border-radius: 2px;
     margin: 1rem auto 0.3rem;
+}
+
+/* =========================
+   COMPACT PHONE NAV — smaller version for home page hero
+   ========================= */
+.phone-mockup--compact {
+    max-width: 250px;
+    padding: 0.5rem;
+    border-radius: 22px;
+}
+
+.phone-mockup--compact .phone-screen {
+    padding: 0.6rem 0.7rem 0.45rem;
+    border-radius: 16px;
+}
+
+.phone-mockup--compact .phone-status-bar {
+    padding: 0 0.2rem 0.35rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.7rem;
+}
+
+.phone-mockup--compact .phone-status-icons .status-icon {
+    height: 9px;
+}
+
+.phone-mockup--compact .phone-greeting {
+    font-size: 0.65rem;
+    margin-bottom: 0.7rem;
+}
+
+.phone-mockup--compact .phone-home-grid {
+    gap: 0.55rem;
+    padding: 0.2rem 0.3rem 0.3rem;
+}
+
+.phone-mockup--compact .app-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+}
+
+.phone-mockup--compact .app-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.phone-mockup--compact .app-label {
+    font-size: 0.7rem;
+}
+
+.phone-mockup--compact .phone-home-indicator {
+    width: 70px;
+    height: 3px;
+    margin: 0.65rem auto 0.2rem;
 }
 
 /* Responsive */

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /Resume.pdf
+
+Sitemap: https://nizamamirul10.github.io/sitemap.xml

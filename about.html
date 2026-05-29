@@ -5,6 +5,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Me | Shazlin Nizam</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- SEO -->
+  <meta name="description" content="About Shazlin Nizam — background, skills, and journey as a Solution & Mobile Developer." />
+  <meta name="author" content="Shazlin Nizam" />
+  <meta name="theme-color" content="#0a0e27" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:url" content="https://nizamamirul10.github.io/about.html" />
+  <meta property="og:title" content="About Shazlin Nizam | Mobile Developer" />
+  <meta property="og:description" content="Background, skills, and journey as a Solution & Mobile Developer." />
+  <meta property="og:image" content="https://nizamamirul10.github.io/preview.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About Shazlin Nizam | Mobile Developer" />
+  <meta name="twitter:description" content="Background, skills, and journey as a Solution & Mobile Developer." />
+  <meta name="twitter:image" content="https://nizamamirul10.github.io/preview.jpg" />
+
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="hero-modern.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,15 +35,22 @@
 
 <body>
 
+  <a href="#about" class="skip-link">Skip to content</a>
+
+  <!-- Site-wide cursor-reactive pixel grid background -->
+  <canvas id="pixel-canvas" class="pixel-bg" aria-hidden="true"></canvas>
+
   <!-- TOP NAV -->
   <div class="subhead">
     <nav class="nav">
-      <a href="index.html" class="nav-link">← Home</a>
+      <a href="index.html" class="nav-link">Home</a>
       <a href="about.html" class="nav-link active">About</a>
       <a href="projects.html" class="nav-link">Projects</a>
       <a href="work.html" class="nav-link">Work</a>
     </nav>
   </div>
+
+  <main>
 
   <!-- ABOUT SECTION -->
   <section id="about" class="about-section">
@@ -60,7 +87,7 @@
         </div>
 
         <!-- EDUCATION (merged into About) -->
-        <h3 class="about-subtitle">Education</h3>
+        <h3 id="education" class="about-subtitle">Education</h3>
         <div class="timeline-list">
           <div class="timeline-card clickable" data-experience="education/engineering-foundation">
             <div class="timeline-dot"></div>
@@ -104,6 +131,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- EXPERIENCE MODAL -->
   <div id="experienceModal" class="modal">
     <div class="modal-overlay"></div>
@@ -118,7 +147,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Shazlin Nizam. All rights reserved.</p>
+      <p>&copy; 2026 Shazlin Nizam. All rights reserved.</p>
     </div>
   </footer>
 

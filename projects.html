@@ -5,6 +5,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | Shazlin Nizam</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- SEO -->
+  <meta name="description" content="Mobile and software projects by Shazlin Nizam — including a published government app and iOS/Android builds." />
+  <meta name="author" content="Shazlin Nizam" />
+  <meta name="theme-color" content="#0a0e27" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nizamamirul10.github.io/projects.html" />
+  <meta property="og:title" content="Projects | Shazlin Nizam" />
+  <meta property="og:description" content="Mobile and software projects — including a published government app and iOS/Android builds." />
+  <meta property="og:image" content="https://nizamamirul10.github.io/preview.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Projects | Shazlin Nizam" />
+  <meta name="twitter:description" content="Mobile and software projects — including a published government app and iOS/Android builds." />
+  <meta name="twitter:image" content="https://nizamamirul10.github.io/preview.jpg" />
+
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="hero-modern.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,15 +35,22 @@
 
 <body>
 
+  <a href="#projects" class="skip-link">Skip to content</a>
+
+  <!-- Site-wide cursor-reactive pixel grid background -->
+  <canvas id="pixel-canvas" class="pixel-bg" aria-hidden="true"></canvas>
+
   <!-- TOP NAV -->
   <div class="subhead">
     <nav class="nav">
-      <a href="index.html" class="nav-link">← Home</a>
+      <a href="index.html" class="nav-link">Home</a>
       <a href="about.html" class="nav-link">About</a>
       <a href="projects.html" class="nav-link active">Projects</a>
       <a href="work.html" class="nav-link">Work</a>
     </nav>
   </div>
+
+  <main>
 
   <!-- PROJECTS SECTION -->
   <section id="projects" class="projects-section">
@@ -128,8 +155,16 @@
               <strong>95%</strong> accuracy
             </p>
             <div class="detail-section">
-              <h3>Overview</h3>
-              <p>AI-powered mobile app that distinguishes poisonous from edible mushrooms in real time. Built as my Final Year Project, the app uses a Convolutional Neural Network (CNN) trained on 350+ species, achieving ~95% classification accuracy on the test set.</p>
+              <h3>Problem</h3>
+              <p>Foragers and hikers in Malaysia frequently encounter unfamiliar mushrooms — some edible, some lethally toxic. Existing identification apps require an internet connection, but cellular signal in dense forests is unreliable. Misidentification can kill.</p>
+            </div>
+            <div class="detail-section">
+              <h3>Approach</h3>
+              <p>Trained a custom Convolutional Neural Network on a dataset of 350+ mushroom species, optimized for on-device inference. Deployed it as a Flutter app that runs the model entirely offline — point the camera at a mushroom and get a classification in under a second, no signal required.</p>
+            </div>
+            <div class="detail-section">
+              <h3>Outcome</h3>
+              <p>~95% classification accuracy on the held-out test set. Final Year Project submission, presented and demoed publicly. The offline-first approach proved that field-usable mobile AI is viable without cloud dependency.</p>
             </div>
             <div class="detail-section">
               <h3>Tech Stack</h3>
@@ -216,10 +251,12 @@
     </div>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Shazlin Nizam. All rights reserved.</p>
+      <p>&copy; 2026 Shazlin Nizam. All rights reserved.</p>
     </div>
   </footer>
 

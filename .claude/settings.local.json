@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell($content = Get-Content \"style.css\" -Raw; $opens = \\($content.ToCharArray\\(\\) | Where-Object { $_ -eq '{' }\\).Count; $closes = \\($content.ToCharArray\\(\\) | Where-Object { $_ -eq '}' }\\).Count; \"open: $opens, close: $closes, diff: $\\($opens - $closes\\)\")"
+      "PowerShell($content = Get-Content \"style.css\" -Raw; $opens = \\($content.ToCharArray\\(\\) | Where-Object { $_ -eq '{' }\\).Count; $closes = \\($content.ToCharArray\\(\\) | Where-Object { $_ -eq '}' }\\).Count; \"open: $opens, close: $closes, diff: $\\($opens - $closes\\)\")",
+      "Bash(git rm *)"
     ]
   }
 }
