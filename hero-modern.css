@@ -378,12 +378,15 @@
     animation: pulse 2s ease-in-out infinite;
 }
 
-/* Contact Grid */
+/* Contact Grid — 3 buttons (Email, LinkedIn, GitHub), centered under profile card */
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-bottom: 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .contact-link {

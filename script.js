@@ -308,6 +308,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const projectsGrid = document.querySelector('.projects-grid');
 
     if (projectsGrid) {
+        const closeDetail = () => {
+            projectsGrid.classList.remove('detail-mode');
+            document.querySelectorAll('.project-card').forEach(c => c.classList.remove('selected'));
+            document.querySelectorAll('.project-detail-pane').forEach(p => p.classList.remove('active'));
+        };
+
         document.querySelectorAll('.project-card[data-project]').forEach(card => {
             card.addEventListener('click', () => {
                 const projectId = card.dataset.project;
@@ -319,17 +325,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 document.querySelectorAll('.project-detail-pane').forEach(p => p.classList.remove('active'));
                 const target = document.querySelector(`.project-detail-pane[data-project="${projectId}"]`);
-                if (target) target.classList.add('active');
+                if (target) {
+                    target.classList.add('active');
+                    // Bring the detail pane (and its Back button) into view
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
         });
 
         document.querySelectorAll('.detail-close').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                projectsGrid.classList.remove('detail-mode');
-                document.querySelectorAll('.project-card').forEach(c => c.classList.remove('selected'));
-                document.querySelectorAll('.project-detail-pane').forEach(p => p.classList.remove('active'));
+                closeDetail();
             });
+        });
+
+        // Press Escape to leave the project detail view
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && projectsGrid.classList.contains('detail-mode')) {
+                closeDetail();
+            }
         });
     }
 
