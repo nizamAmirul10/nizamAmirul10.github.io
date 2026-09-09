@@ -6,24 +6,23 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
 // =========================
 // PIXEL GRID BACKGROUND
-// — Cursor-reactive grid: cells near the pointer light up with random palette colors
-//   then fade out. Always-on faint base dots are drawn so the grid is visible at rest.
+// — Cursor-reactive grid: cells near the pointer light up then fade out.
+//   Mostly ivory sparks with the occasional accent cell — reads as static/film grain.
 // =========================
 const pixelCanvas = document.getElementById('pixel-canvas');
 if (pixelCanvas && !prefersReducedMotion) {
     const pctx = pixelCanvas.getContext('2d');
-    const cellSize = 28;
-    const palette = ['#6366f1', '#ec4899', '#14b8a6', '#818cf8'];
+    const cellSize = 30;
+    const palette = ['#f2efe6', '#f2efe6', '#a9a69d', '#d4f04f'];
     const influenceCells = 4;     // radius in cells
-    const fadeRate = 0.93;        // per-frame alpha decay
-    const peakAlpha = 0.55;
+    const fadeRate = 0.92;        // per-frame alpha decay
+    const peakAlpha = 0.4;
 
     let cols = 0;
     let rows = 0;
-    let cells = [];               // flat array of { alpha, color }
+    let cells = [];
     let cursorX = -9999;
     let cursorY = -9999;
-    let lastCursorMove = 0;
 
     function resizePixelCanvas() {
         const dpr = window.devicePixelRatio || 1;
@@ -69,21 +68,21 @@ if (pixelCanvas && !prefersReducedMotion) {
         pctx.clearRect(0, 0, w, h);
 
         // Base layer: faint dots (always visible)
-        pctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
+        pctx.fillStyle = 'rgba(255, 255, 255, 0.035)';
         for (let r = 0; r < rows; r++) {
             for (let c = 0; c < cols; c++) {
                 pctx.fillRect(c * cellSize + cellSize / 2 - 1, r * cellSize + cellSize / 2 - 1, 2, 2);
             }
         }
 
-        // Active layer: colored squares near cursor
+        // Active layer: lit squares near cursor
         for (let r = 0; r < rows; r++) {
             for (let c = 0; c < cols; c++) {
                 const cell = cells[r * cols + c];
                 if (cell.alpha > 0.01) {
                     pctx.globalAlpha = cell.alpha;
                     pctx.fillStyle = cell.color;
-                    pctx.fillRect(c * cellSize + 2, r * cellSize + 2, cellSize - 4, cellSize - 4);
+                    pctx.fillRect(c * cellSize + 3, r * cellSize + 3, cellSize - 6, cellSize - 6);
                     cell.alpha *= fadeRate;
                 }
             }
@@ -100,7 +99,6 @@ if (pixelCanvas && !prefersReducedMotion) {
     window.addEventListener('mousemove', (e) => {
         cursorX = e.clientX;
         cursorY = e.clientY;
-        lastCursorMove = performance.now();
         // Hide the first-visit cursor hint as soon as the user actually moves
         const hint = document.getElementById('cursor-hint');
         if (hint && !hint.dataset.dismissed) {
@@ -110,78 +108,58 @@ if (pixelCanvas && !prefersReducedMotion) {
         }
     });
 
-    window.addEventListener('resize', () => {
-        resizePixelCanvas();
-    });
+    window.addEventListener('resize', resizePixelCanvas);
 
     resizePixelCanvas();
     requestAnimationFrame(pixelLoop);
 }
 
-// Smooth scroll and active navigation
 document.addEventListener('DOMContentLoaded', function () {
 
     // =========================
-    // TAB SWITCHING FUNCTIONALITY
+    // NAV — Kuala Lumpur local time + elevation on scroll
     // =========================
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const targetTab = this.getAttribute('data-tab');
-
-            // Remove active class from all buttons and panels
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabPanels.forEach(panel => panel.classList.remove('active'));
-
-            // Add active class to clicked button
-            this.classList.add('active');
-
-            // Show corresponding panel with animation
-            const targetPanel = document.querySelector(`.tab-panel[data-tab="${targetTab}"]`);
-            if (targetPanel) {
-                targetPanel.classList.add('active');
-            }
-
-            // Add click animation
-            this.style.animation = 'none';
-            setTimeout(() => {
-                this.style.animation = 'tab-click 0.4s ease';
-            }, 10);
+    const navTime = document.getElementById('nav-time');
+    if (navTime) {
+        const fmt = new Intl.DateTimeFormat('en-GB', {
+            timeZone: 'Asia/Kuala_Lumpur',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
         });
-    });
+        const tick = () => { navTime.textContent = `KL ${fmt.format(new Date())}`; };
+        tick();
+        setInterval(tick, 30000);
+    }
 
-    // Add tab click animation
-    const tabStyle = document.createElement('style');
-    tabStyle.textContent = `
-@keyframes tab-click {
-    0% { transform: translateY(-5px) scale(1); }
-    50% { transform: translateY(-8px) scale(1.05); }
-    100% { transform: translateY(-5px) scale(1); }
-}
-`;
-    document.head.appendChild(tabStyle);
+    const subhead = document.querySelector('.subhead');
+    if (subhead) {
+        let scrolled = false;
+        let scrollTicking = false;
+        window.addEventListener('scroll', () => {
+            if (scrollTicking) return;
+            scrollTicking = true;
+            requestAnimationFrame(() => {
+                const shouldBeScrolled = window.scrollY > 40;
+                if (shouldBeScrolled !== scrolled) {
+                    scrolled = shouldBeScrolled;
+                    subhead.style.boxShadow = scrolled ? '0 10px 40px -10px rgba(0, 0, 0, 0.6)' : 'none';
+                }
+                scrollTicking = false;
+            });
+        }, { passive: true });
+    }
 
     // =========================
-    // EXPERIENCE MODAL FUNCTIONALITY
+    // EXPERIENCE MODAL (about.html — loads /experiences/*.html partials)
     // =========================
     const modal = document.getElementById('experienceModal');
     const modalContent = document.getElementById('modalContent');
-    const modalClose = document.querySelector('.modal-close');
-    const modalOverlay = document.querySelector('.modal-overlay');
     const clickableCards = document.querySelectorAll('.timeline-card.clickable');
-
-    // Open modal and load content
-    clickableCards.forEach(card => {
-        card.addEventListener('click', function () {
-            const experienceId = this.getAttribute('data-experience');
-            loadExperienceDetail(experienceId);
-        });
-    });
 
     let activeFetch = null;
     function loadExperienceDetail(experienceId) {
+        if (!modal || !modalContent) return;
         if (activeFetch) activeFetch.abort();
         activeFetch = new AbortController();
 
@@ -203,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 modalContent.innerHTML = `
                     <div class="experience-detail">
                         <div class="detail-header">
-                            <h2>Content Not Available</h2>
+                            <h2>Content not available</h2>
                         </div>
                         <div class="detail-body">
                             <p>Sorry, the detailed information for this experience is currently unavailable.</p>
@@ -214,143 +192,116 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    // Close modal
     function closeModal() {
+        if (!modal) return;
         if (activeFetch) activeFetch.abort();
         modal.classList.remove('active');
         document.body.style.overflow = '';
     }
 
-    if (modalClose) modalClose.addEventListener('click', closeModal);
-    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
-
-    // Close on Escape key
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-            closeModal();
-        }
+    clickableCards.forEach(card => {
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.addEventListener('click', () => loadExperienceDetail(card.getAttribute('data-experience')));
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                loadExperienceDetail(card.getAttribute('data-experience'));
+            }
+        });
     });
 
-    // Scroll-triggered reveal animations (IntersectionObserver — no scroll listener needed)
-    // — fully skipped when user prefers reduced motion (elements stay visible from the start)
-    const animatedElements = document.querySelectorAll('.service-card, .project-card, .timeline-card, .tech-item');
-    if (!prefersReducedMotion) {
-        animatedElements.forEach((element, index) => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(30px)';
-            element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+    if (modal) {
+        modal.querySelectorAll('.modal-close, .modal-overlay').forEach(el => el.addEventListener('click', closeModal));
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+        });
+    }
+
+    // =========================
+    // SCROLL REVEAL — IntersectionObserver, staggered per sibling group
+    // =========================
+    const revealTargets = document.querySelectorAll(
+        '.case, .timeline-card, .award-card, .skill-group, .achievements-list li, .testimonial-card, .hover-list-item, .currently-list li'
+    );
+    if (!prefersReducedMotion && 'IntersectionObserver' in window && revealTargets.length) {
+        const perParent = new Map();
+        revealTargets.forEach((el) => {
+            const idx = perParent.get(el.parentElement) || 0;
+            perParent.set(el.parentElement, idx + 1);
+            el.style.setProperty('--reveal-delay', `${Math.min(idx, 8) * 0.07}s`);
+            el.classList.add('reveal');
         });
 
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('is-visible');
                     revealObserver.unobserve(entry.target);
                 }
             });
-        }, { rootMargin: '0px 0px -100px 0px' });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
 
-        animatedElements.forEach(el => revealObserver.observe(el));
+        revealTargets.forEach(el => revealObserver.observe(el));
     }
 
-    // Navbar elevation on scroll — only toggles shadow; background stays solid
-    // so the pixel BG can never bleed through.
-    const subhead = document.querySelector('.subhead');
-    if (subhead) {
-        let scrolled = false;
-        let scrollTicking = false;
-        window.addEventListener('scroll', () => {
-            if (scrollTicking) return;
-            scrollTicking = true;
-            requestAnimationFrame(() => {
-                const shouldBeScrolled = window.scrollY > 50;
-                if (shouldBeScrolled !== scrolled) {
-                    scrolled = shouldBeScrolled;
-                    subhead.style.boxShadow = scrolled ? '0 4px 20px rgba(0, 0, 0, 0.3)' : 'none';
-                }
-                scrollTicking = false;
-            });
-        }, { passive: true });
-    }
-
-    // Interactive cursor 3D-tilt for cards (rAF-throttled per card; skipped for reduced motion)
-    const cards = prefersReducedMotion ? [] : document.querySelectorAll('.service-card, .project-card');
-
-    cards.forEach(card => {
-        let cardTicking = false;
-        let lastE = null;
-        card.addEventListener('mousemove', (e) => {
-            lastE = e;
-            if (cardTicking) return;
-            cardTicking = true;
-            requestAnimationFrame(() => {
-                const rect = card.getBoundingClientRect();
-                const x = lastE.clientX - rect.left;
-                const y = lastE.clientY - rect.top;
-                const rotateX = (y - rect.height / 2) / 20;
-                const rotateY = (rect.width / 2 - x) / 20;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-                cardTicking = false;
-            });
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-        });
-    });
-
     // =========================
-    // PROJECT CARD DETAIL TOGGLE (inline master / detail)
-    // — clicking a card hides the others and reveals its detail pane on the right
-    // — clicking the close (×) restores the grid
+    // CASE STUDIES (projects.html) — inline accordion + sticky index
     // =========================
-    const projectsGrid = document.querySelector('.projects-grid');
+    const cases = document.querySelectorAll('.case');
 
-    if (projectsGrid) {
-        const closeDetail = () => {
-            projectsGrid.classList.remove('detail-mode');
-            document.querySelectorAll('.project-card').forEach(c => c.classList.remove('selected'));
-            document.querySelectorAll('.project-detail-pane').forEach(p => p.classList.remove('active'));
+    if (cases.length) {
+        const setOpen = (c, open) => {
+            c.classList.toggle('open', open);
+            const btn = c.querySelector('.case-toggle');
+            if (btn) btn.setAttribute('aria-expanded', String(open));
         };
 
-        document.querySelectorAll('.project-card[data-project]').forEach(card => {
-            card.addEventListener('click', () => {
-                const projectId = card.dataset.project;
-
-                projectsGrid.classList.add('detail-mode');
-
-                document.querySelectorAll('.project-card').forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-
-                document.querySelectorAll('.project-detail-pane').forEach(p => p.classList.remove('active'));
-                const target = document.querySelector(`.project-detail-pane[data-project="${projectId}"]`);
-                if (target) {
-                    target.classList.add('active');
-                    // Bring the detail pane (and its Back button) into view
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        document.querySelectorAll('.detail-close').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                closeDetail();
-            });
-        });
-
-        // Press Escape to leave the project detail view
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && projectsGrid.classList.contains('detail-mode')) {
-                closeDetail();
+        cases.forEach(c => {
+            const btn = c.querySelector('.case-toggle');
+            const media = c.querySelector('.case-media');
+            const toggle = () => setOpen(c, !c.classList.contains('open'));
+            if (btn) btn.addEventListener('click', toggle);
+            if (media) {
+                media.addEventListener('click', toggle);
+                media.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+                });
             }
+        });
+
+        // Deep link: projects.html#case-skala → scroll to it and open the write-up
+        const openFromHash = () => {
+            const target = location.hash && document.querySelector(`.case${location.hash}`);
+            if (!target) return;
+            setOpen(target, true);
+            setTimeout(() => target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' }), 60);
+        };
+        openFromHash();
+        window.addEventListener('hashchange', openFromHash);
+
+        // Sticky index: highlight the project currently in view
+        const navLinks = document.querySelectorAll('.case-nav-link');
+        if (navLinks.length && 'IntersectionObserver' in window) {
+            const byId = new Map([...navLinks].map(a => [a.getAttribute('href').slice(1), a]));
+            const inView = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    navLinks.forEach(a => a.classList.remove('active'));
+                    const link = byId.get(entry.target.id);
+                    if (link) link.classList.add('active');
+                });
+            }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+            cases.forEach(c => inView.observe(c));
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') cases.forEach(c => setOpen(c, false));
         });
     }
 
     // =========================
-    // CONTACT TILE TOGGLE (Email / Phone)
-    // — clicking reveals the address/number; clicking again hides it
+    // CONTACT TOGGLE — click reveals the email address; click again hides it
     // =========================
     document.querySelectorAll('.contact-toggle').forEach(btn => {
         const span = btn.querySelector('.contact-text');
@@ -359,64 +310,49 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.addEventListener('click', () => {
             const isRevealed = btn.classList.toggle('revealed');
             span.textContent = isRevealed ? revealed : original;
+            if (isRevealed && navigator.clipboard) {
+                navigator.clipboard.writeText(revealed).catch(() => {});
+            }
         });
     });
 
-    // Parallax effect for gradient orbs (rAF-throttled, cached query; skipped for reduced motion)
-    const orbs = prefersReducedMotion ? [] : document.querySelectorAll('.gradient-orb');
-    if (orbs.length > 0) {
-        let orbMouseX = 0;
-        let orbMouseY = 0;
-        let orbTicking = false;
-        window.addEventListener('mousemove', (e) => {
-            orbMouseX = e.clientX / window.innerWidth;
-            orbMouseY = e.clientY / window.innerHeight;
-            if (orbTicking) return;
-            orbTicking = true;
-            requestAnimationFrame(() => {
-                orbs.forEach((orb, index) => {
-                    const speed = (index + 1) * 20;
-                    const x = (orbMouseX - 0.5) * speed;
-                    const y = (orbMouseY - 0.5) * speed;
-                    orb.style.transform = `translate(${x}px, ${y}px)`;
-                });
-                orbTicking = false;
-            });
+    // =========================
+    // RESUME VIEWER MODAL
+    // =========================
+    const resumeBtn = document.getElementById('resumeBtn');
+    const resumeModal = document.getElementById('resumeModal');
+    const resumeFrame = document.getElementById('resumeFrame');
+    const RESUME_SRC = 'Resume-public.pdf';
+
+    function openResume() {
+        if (!resumeModal) return;
+        if (resumeFrame && !resumeFrame.getAttribute('src')) {
+            resumeFrame.setAttribute('src', `${RESUME_SRC}#toolbar=1&navpanes=0`);
+        }
+        resumeModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeResume() {
+        if (!resumeModal) return;
+        resumeModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (resumeBtn) resumeBtn.addEventListener('click', openResume);
+    if (resumeModal) {
+        resumeModal.querySelectorAll('[data-resume-close]').forEach(el => el.addEventListener('click', closeResume));
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && resumeModal.classList.contains('active')) closeResume();
         });
     }
 
-    // Tech stack item interaction
-    const techItems = document.querySelectorAll('.tech-item');
-
-    techItems.forEach(item => {
-        item.addEventListener('click', function () {
-            this.style.animation = 'none';
-            setTimeout(() => {
-                this.style.animation = 'pop 0.5s ease';
-            }, 10);
-        });
-    });
-
-    // Add pop animation
-    const style = document.createElement('style');
-    style.textContent = `
-@keyframes pop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-`;
-    document.head.appendChild(style);
-
     // =========================
-    // TERMINAL SESSION ANIMATION
-    // — Reveals each terminal line/output one at a time, like a real shell session.
-    //   Skipped (everything visible) when prefers-reduced-motion is on.
+    // SESSION LOG ANIMATION — reveals each line one at a time, like a real shell
     // =========================
     const terminalBody = document.querySelector('.terminal-body');
     if (terminalBody && !prefersReducedMotion) {
         const lines = terminalBody.children;
-        // Hide all lines except the blinking-cursor line
         for (const line of lines) line.style.opacity = '0';
         let i = 0;
         function revealNext() {
@@ -425,37 +361,14 @@ document.addEventListener('DOMContentLoaded', function () {
             lines[i].style.opacity = '1';
             const isCommand = lines[i].classList.contains('terminal-line');
             i++;
-            setTimeout(revealNext, isCommand ? 280 : 180);
+            setTimeout(revealNext, isCommand ? 300 : 200);
         }
-        // Slight delay so the page-fade-in finishes first
-        setTimeout(revealNext, 600);
-    }
-
-    // Typing effect for role (instant text for reduced motion users)
-    const roleElement = document.querySelector('.role');
-    if (roleElement && !prefersReducedMotion) {
-        const roleText = roleElement.textContent;
-        roleElement.textContent = '';
-
-        let charIndex = 0;
-        const typingSpeed = 100;
-
-        function typeRole() {
-            if (charIndex < roleText.length) {
-                roleElement.textContent += roleText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeRole, typingSpeed);
-            }
-        }
-
-        setTimeout(typeRole, 500);
+        setTimeout(revealNext, 900);
     }
 
     // =========================
-    // EDITORIAL HOVER REVEAL (Olivier Larose style)
-    // — Works across all .hover-list elements on the page (Featured + Explore).
-    // — Items with data-image show a real image; items with data-preview show a themed
-    //   gradient + uppercase label. One shared .hover-image element follows the cursor.
+    // EDITORIAL HOVER REVEAL — one floating preview follows the cursor over list rows
+    // — data-image → real image; data-preview → tinted card with an italic label
     // =========================
     const hoverImage = document.getElementById('hover-image');
     const hoverImageLabel = document.getElementById('hover-image-label');
@@ -466,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let hx = 0;
         let hy = 0;
         let hoverTicking = false;
-        const previewClasses = ['preview-about', 'preview-education', 'preview-work', 'label-only'];
+        const previewClasses = ['preview-about', 'preview-education', 'preview-work', 'preview-fertilemate', 'label-only'];
 
         function paintHoverPosition() {
             hoverImage.style.setProperty('--hover-x', hx + 'px');
@@ -488,12 +401,10 @@ document.addEventListener('DOMContentLoaded', function () {
             previewClasses.forEach(cls => hoverImage.classList.remove(cls));
         }
 
-        const items = document.querySelectorAll('.hover-list-item');
-        items.forEach(item => {
+        document.querySelectorAll('.hover-list-item').forEach(item => {
             const src = item.dataset.image;
             const preview = item.dataset.preview;
 
-            // Preload real images so they don't flash on first hover
             if (src) {
                 const preload = new Image();
                 preload.src = src;
@@ -510,7 +421,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     hoverImage.classList.add(`preview-${preview}`, 'label-only', 'active');
                     if (hoverImageLabel) hoverImageLabel.textContent = preview;
                 }
-                // No data-image / data-preview → no floating preview shown
             });
 
             item.addEventListener('mouseleave', () => {

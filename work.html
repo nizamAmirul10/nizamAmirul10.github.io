@@ -10,7 +10,7 @@
   <!-- SEO -->
   <meta name="description" content="Work experience of Shazlin Nizam — Solution & Mobile Developer roles, responsibilities, and projects shipped." />
   <meta name="author" content="Shazlin Nizam" />
-  <meta name="theme-color" content="#0a0e27" />
+  <meta name="theme-color" content="#0b0b0c" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -26,11 +26,9 @@
   <meta name="twitter:image" content="https://nizamamirul10.github.io/preview.jpg" />
 
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="hero-modern.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -41,21 +39,31 @@
   <canvas id="pixel-canvas" class="pixel-bg" aria-hidden="true"></canvas>
 
   <!-- TOP NAV -->
-  <div class="subhead">
-    <nav class="nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="projects.html" class="nav-link">Projects</a>
-      <a href="work.html" class="nav-link active">Work</a>
+  <header class="subhead">
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="nav-brand" aria-label="Shazlin Nizam — home">SN<span>.</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="work.html" class="nav-link active" aria-current="page">Work</a>
+      </div>
+      <span class="nav-time" id="nav-time" aria-label="Local time in Kuala Lumpur">KL —:—</span>
     </nav>
-  </div>
+  </header>
 
   <main>
 
   <!-- WORK EXPERIENCE SECTION -->
   <section id="work" class="experience-section">
     <div class="container">
-      <h2 class="section-title">Work Experience</h2>
+      <header class="page-head">
+        <div>
+          <span class="eyebrow">03 — Work</span>
+          <h1 class="page-title">Where I've <em>shipped</em>.</h1>
+        </div>
+        <p class="page-sub">Two roles, both on live products with real users — one in government services, one in health-tech.</p>
+      </header>
       <div class="timeline-list">
         <div class="timeline-card">
           <div class="timeline-dot"></div>
@@ -64,10 +72,11 @@
             <div class="institution">Zen Computer System Sdn Bhd</div>
             <div class="period">2025 – Present</div>
             <ul>
-              <li>Building &amp; shipping native iOS (SwiftUI) and Android (Java) features for the published <strong>MyIBJKM</strong> app</li>
-              <li>Owning the backend: <strong>30+ vanilla PHP REST API endpoints</strong> with MySQL/ODBC powering MyIBJKM — auth, geo-coordinates, PDF generation, QR activity, and JKM family record management</li>
-              <li>Leading <strong>SKALA 2.0</strong> — cross-platform JKR project monitoring app in Flutter with BLoC state management</li>
-              <li>Working across the full delivery cycle: backend API, mobile UI, testing, and store releases</li>
+              <li>Flutter frontend developer on <strong>SKALA 2.0</strong>, JKR's project-monitoring app — role-based dashboards, site diaries, BHTB verification with e-signatures, charts and PDF reports, integrated with a teammate's Laravel REST API</li>
+              <li>Performance work on SKALA: isolates for heavy filtering and CSV parsing, image compression before upload, paginated lazy lists, caching and debounced search</li>
+              <li>Sole developer on the <strong>MyIBJKM</strong> enhancement — upgraded JKM's published native Android (Java) and iOS (SwiftUI) apps in Android Studio and Xcode</li>
+              <li>Built the new vanilla PHP + MySQL endpoints the enhancement required (BWI aid status and history, QR check-in status, version checks) and hardened the existing login, PDF and check-in endpoints</li>
+              <li>Working across the full delivery cycle: API, mobile UI, testing, and store releases</li>
             </ul>
           </div>
         </div>
@@ -94,8 +103,28 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="container">
-      <p>&copy; 2026 Shazlin Nizam. All rights reserved.</p>
+    <div class="footer-grid">
+      <div>
+        <p class="footer-big">Let's build<br>something <em>useful</em>.</p>
+        <p class="footer-blurb">Open to remote / hybrid Solution &amp; Mobile Developer roles.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="work.html">Work</a>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <a href="https://www.linkedin.com/in/shazlin-nizam-a-072967308/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/nizamAmirul10" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="Resume-public.pdf" download="Shazlin-Nizam-Resume.pdf">Resume (PDF) ↓</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Shazlin Nizam</span>
+      <span>Kuala Lumpur, Malaysia</span>
     </div>
   </footer>
 

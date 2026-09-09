@@ -10,7 +10,7 @@
   <!-- SEO -->
   <meta name="description" content="Mobile and software projects by Shazlin Nizam — including a published government app and iOS/Android builds." />
   <meta name="author" content="Shazlin Nizam" />
-  <meta name="theme-color" content="#0a0e27" />
+  <meta name="theme-color" content="#0b0b0c" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -26,11 +26,9 @@
   <meta name="twitter:image" content="https://nizamamirul10.github.io/preview.jpg" />
 
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="hero-modern.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -41,327 +39,318 @@
   <canvas id="pixel-canvas" class="pixel-bg" aria-hidden="true"></canvas>
 
   <!-- TOP NAV -->
-  <div class="subhead">
-    <nav class="nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="projects.html" class="nav-link active">Projects</a>
-      <a href="work.html" class="nav-link">Work</a>
+  <header class="subhead">
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="nav-brand" aria-label="Shazlin Nizam — home">SN<span>.</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="projects.html" class="nav-link active" aria-current="page">Projects</a>
+        <a href="work.html" class="nav-link">Work</a>
+      </div>
+      <span class="nav-time" id="nav-time" aria-label="Local time in Kuala Lumpur">KL —:—</span>
     </nav>
-  </div>
+  </header>
 
   <main>
 
-  <!-- PROJECTS SECTION -->
+  <!-- PROJECTS — editorial case-study spreads -->
   <section id="projects" class="projects-section">
     <div class="container">
-      <h2 class="section-title">Featured Projects</h2>
-      <div class="projects-grid">
-        <!-- PROJECT 01: SKALA 2.0 — current work at Zen Computer System (2026) -->
-        <div class="project-card visual-card" data-project="skala">
-          <div class="project-image project-image-dual">
-            <img src="assets/skala%202.0/s1.png" alt="SKALA 2.0 login screen" />
-            <img src="assets/skala%202.0/s2.png" alt="SKALA 2.0 dashboard" />
-            <div class="project-overlay"><span class="view-cta">View Details →</span></div>
+      <header class="page-head">
+        <div>
+          <span class="eyebrow">02 — Projects</span>
+          <h1 class="page-title">Case <em>studies</em>.</h1>
+        </div>
+        <p class="page-sub">Four apps — from a government field-monitoring tool to an offline CNN classifier. Open any one for the full write-up.</p>
+      </header>
+
+      <nav class="case-nav" aria-label="Jump to project">
+        <a href="#case-skala" class="case-nav-link"><span>01</span>SKALA 2.0</a>
+        <a href="#case-myibjkm" class="case-nav-link"><span>02</span>MyIBJKM</a>
+        <a href="#case-fertilemate" class="case-nav-link"><span>03</span>Fertilemate</a>
+        <a href="#case-mushroommate" class="case-nav-link"><span>04</span>MushroomMate</a>
+      </nav>
+
+      <div class="case-list">
+
+        <!-- 01 · SKALA 2.0 -->
+        <article class="case" id="case-skala" style="--tint: 70, 140, 255;">
+          <div class="case-media" role="button" tabindex="0" aria-label="Toggle SKALA 2.0 case study">
+            <span class="case-ghost" aria-hidden="true">01</span>
+            <span class="case-media-label">Flutter · iOS + Android</span>
+            <img src="assets/skala%202.0/s1.png" alt="SKALA 2.0 login screen" loading="lazy" />
+            <img src="assets/skala%202.0/s2.png" alt="SKALA 2.0 dashboard" loading="lazy" />
           </div>
-          <div class="project-body">
-            <div class="project-header">
-              <h3>SKALA 2.0</h3>
-              <span class="project-status status-progress">In Progress · 2026</span>
+          <div class="case-body">
+            <div class="case-top">
+              <span class="case-num">01</span>
+              <span class="project-status status-progress">In progress · 2026</span>
             </div>
-            <p class="project-impact">
-              <strong>Zen Computer System</strong>
-              <span class="impact-divider">·</span>
-              <strong>JKR</strong> Malaysia
-              <span class="impact-divider">·</span>
-              Single codebase · BLoC
-            </p>
-            <p class="project-desc">Cross-platform monitoring app for Jabatan Kerja Raya (JKR) to track infrastructure project status in real time. Built with Flutter using the BLoC pattern for clean state management — one codebase delivering native experiences on iOS and Android.</p>
+            <h2 class="case-title">SKALA 2.0</h2>
+            <p class="case-meta"><strong>Zen Computer System</strong> · JKR Malaysia · Flutter frontend · BLoC · Laravel API by teammate</p>
+            <p class="case-desc">Project-monitoring app for Jabatan Kerja Raya (JKR). I own the Flutter side: role-based dashboards, site diaries, BHTB verification with e-signatures, i-Supervision photo uploads and PDF reports — integrated against the Laravel REST API my teammate builds.</p>
             <div class="project-tags">
               <span class="tag">Flutter</span>
               <span class="tag">BLoC</span>
-              <span class="tag">iOS</span>
-              <span class="tag">Android</span>
+              <span class="tag">REST API</span>
+              <span class="tag">Firebase</span>
+            </div>
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-skala-detail">
+              <span class="case-toggle-icon" aria-hidden="true">+</span>
+              <span class="label-closed">Read the case study</span>
+              <span class="label-open">Close</span>
+            </button>
+          </div>
+          <div class="case-detail" id="case-skala-detail">
+            <div class="case-detail-inner">
+              <div class="case-detail-grid">
+                <div class="detail-section">
+                  <h3>My role</h3>
+                  <p>Flutter (frontend) developer in a two-person mobile team. I built the screens and BLoC state layer for five user roles — JKR officers, ministry, contractors, consultants and handover teams — and integrated 40+ endpoints from the Laravel backend: JWT login with refresh tokens, JKR SSO, site diaries, BHTB verification with signature capture, i-Supervision photos, push notifications and PDF reports.</p>
+                </div>
+                <div class="detail-section">
+                  <h3>Optimisation</h3>
+                  <p>Moved heavy filtering, sorting and CSV parsing into isolates, compressed and resized photos before upload, added paginated lazy-loading lists, shimmer placeholders, debounced search, and draft and session caches so field officers keep their work when connectivity drops. Also set up the iOS build — bundle IDs, pods, plugin registration — for TestFlight.</p>
+                </div>
+                <div class="detail-section">
+                  <h3>Outcome</h3>
+                  <p>One codebase running on iOS and Android, already pointed at JKR's production API, with roughly half of the repository's commits mine across the app's screens, API layer and config. BLoC keeps business logic separate from UI, so new features land on both platforms at once.</p>
+                </div>
+              </div>
+              <div class="case-detail-foot">
+                <div class="project-tags">
+                  <span class="tag">Flutter</span>
+                  <span class="tag">Dart</span>
+                  <span class="tag">BLoC</span>
+                  <span class="tag">REST API</span>
+                  <span class="tag">JWT</span>
+                  <span class="tag">fl_chart</span>
+                  <span class="tag">PDF</span>
+                  <span class="tag">Firebase</span>
+                </div>
+                <span class="case-foot-note">Zen Computer System Sdn Bhd · 2026 · In progress · Backend: Laravel (teammate)</span>
+              </div>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- PROJECT 02: MyIBJKM — full-stack: native mobile + PHP backend (2025) -->
-        <div class="project-card visual-card" data-project="myibjkm">
-          <div class="project-image project-image-dual">
-            <img src="assets/myibjkm/ib1.png" alt="MyIBJKM screen 1" class="fit-top" />
-            <img src="assets/myibjkm/ib2.png" alt="MyIBJKM screen 2" />
-            <div class="project-overlay"><span class="view-cta">View Details →</span></div>
+        <!-- 02 · MyIBJKM -->
+        <article class="case" id="case-myibjkm" style="--tint: 110, 120, 255;">
+          <div class="case-media" role="button" tabindex="0" aria-label="Toggle MyIBJKM case study">
+            <span class="case-ghost" aria-hidden="true">02</span>
+            <span class="case-media-label">Native Android + iOS · PHP API</span>
+            <img src="assets/myibjkm/ib1.png" alt="MyIBJKM login screen" loading="lazy" />
+            <img src="assets/myibjkm/ib2.png" alt="MyIBJKM dashboard" loading="lazy" />
           </div>
-          <div class="project-body">
-            <div class="project-header">
-              <h3>MyIBJKM</h3>
+          <div class="case-body">
+            <div class="case-top">
+              <span class="case-num">02</span>
               <span class="project-status status-shipped">Published · 2025</span>
             </div>
-            <p class="project-impact">
-              <strong>Zen Computer System</strong>
-              <span class="impact-divider">·</span>
-              <strong>Full-Stack</strong>
-              <span class="impact-divider">·</span>
-              Native iOS + Android + PHP API
-            </p>
-            <p class="project-desc">End-to-end ownership: native iOS (SwiftUI) and Android (Java) mobile apps backed by a vanilla PHP REST API I built and maintain. 30+ API endpoints handling auth, geo-coordinates, PDF generation, QR activity, and family record management for JKM Malaysia. Live on App Store and Google Play.</p>
+            <h2 class="case-title">MyIBJKM</h2>
+            <p class="case-meta"><strong>Zen Computer System</strong> · JKM Malaysia · Solo enhancement · Java · SwiftUI · PHP · MySQL</p>
+            <p class="case-desc">Enhancement of JKM's published citizen app, handled alone end-to-end: upgraded the native Android (Java) and iOS (SwiftUI) apps in Android Studio and Xcode, and built the new PHP endpoints the new features needed — disaster-relief aid (BWI) status and history, QR check-in status and app version checks — on JKM's existing MySQL system.</p>
             <div class="project-tags">
-              <span class="tag">SwiftUI</span>
               <span class="tag">Java</span>
+              <span class="tag">SwiftUI</span>
               <span class="tag">PHP</span>
               <span class="tag">MySQL</span>
-              <span class="tag">REST API</span>
+              <span class="tag">Android Studio</span>
+              <span class="tag">Xcode</span>
+            </div>
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-myibjkm-detail">
+              <span class="case-toggle-icon" aria-hidden="true">+</span>
+              <span class="label-closed">Read the case study</span>
+              <span class="label-open">Close</span>
+            </button>
+          </div>
+          <div class="case-detail" id="case-myibjkm-detail">
+            <div class="case-detail-inner">
+              <div class="case-detail-grid">
+                <div class="detail-section">
+                  <h3>Context</h3>
+                  <p>MyIBJKM is Jabatan Kebajikan Masyarakat's public app for citizens to manage family (KIR) records, evacuation-centre (PPS) check-ins and disaster-relief aid. It was already live on both stores when JKM asked for new aid features and a modernisation pass. I was the sole developer on the enhancement.</p>
+                </div>
+                <div class="detail-section">
+                  <h3>What I built</h3>
+                  <p>Backend: new vanilla PHP endpoints inside the app's module of JKM's system — BWI aid status and history, aid-recipient lists with PDF preview, QR check-in status, KIR status checks and a mobile version gate — plus a rework of the login, PDF, PPS, check-in/out and profile-update endpoints with prepared statements and signed session tokens. Mobile: upgraded both native apps — Android (Java) to target SDK 36 with Keystore-backed SQLCipher, an in-app update flow and a locked-down network config, and the iOS app in SwiftUI to match.</p>
+                </div>
+                <div class="detail-section">
+                  <h3>Outcome</h3>
+                  <p>Live on the App Store and Google Play. Handling every layer of the change — PHP, Android and iOS — meant one person could trace an issue from screen tap to SQL query, and JKM got the new aid features without spinning up a separate backend team.</p>
+                </div>
+              </div>
+              <div class="case-detail-foot">
+                <div class="project-tags">
+                  <span class="tag">Java</span>
+                  <span class="tag">SwiftUI</span>
+                  <span class="tag">PHP</span>
+                  <span class="tag">MySQL</span>
+                  <span class="tag">Volley</span>
+                  <span class="tag">Google Maps</span>
+                  <span class="tag">SQLCipher</span>
+                  <span class="tag">QR</span>
+                </div>
+                <span class="case-foot-note">Zen Computer System Sdn Bhd · 2025 · Published · Solo enhancement</span>
+              </div>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- PROJECT 03: Fertilemate — internship at CS Leaflabs (Oct 2024 – 2025) -->
-        <div class="project-card visual-card" data-project="fertilemate">
-          <div class="project-image project-image-dual">
-            <img src="assets/fertilemate/f1.jpg" alt="Fertilemate app screen 1" onerror="this.style.display='none'" />
-            <img src="assets/fertilemate/f2.jpg" alt="Fertilemate app screen 2" onerror="this.style.display='none'" />
-            <div class="project-overlay"><span class="view-cta">View Details →</span></div>
+        <!-- 03 · Fertilemate -->
+        <article class="case" id="case-fertilemate" style="--tint: 244, 150, 180;">
+          <div class="case-media" role="button" tabindex="0" aria-label="Toggle Fertilemate case study">
+            <span class="case-ghost" aria-hidden="true">03</span>
+            <span class="case-media-label">Flutter · iOS + Android</span>
+            <img src="assets/fertilemate/f1.png" alt="Fertilemate cycle and health tracker" loading="lazy" />
           </div>
-          <div class="project-body">
-            <div class="project-header">
-              <h3>Fertilemate</h3>
+          <div class="case-body">
+            <div class="case-top">
+              <span class="case-num">03</span>
               <span class="project-status status-work">Internship · Oct 2024 – 2025</span>
             </div>
-            <p class="project-impact">
-              <strong>CS Leaflabs Sdn Bhd</strong>
-              <span class="impact-divider">·</span>
-              <strong>iOS</strong> + <strong>Android</strong>
-              <span class="impact-divider">·</span>
-              AI fertility tracking
-            </p>
-            <p class="project-desc">AI-powered fertility &amp; hormonal health platform. As Mobile Developer intern at CS Leaflabs, I shipped new feature enhancements, redesigned UI flows, and maintained the production app used by women across Malaysia managing PCOS, menopause, and reproductive health.</p>
+            <h2 class="case-title">Fertilemate</h2>
+            <p class="case-meta"><strong>CS Leaflabs Sdn Bhd</strong> · iOS + Android · AI fertility tracking</p>
+            <p class="case-desc">AI-powered fertility &amp; hormonal health platform. As Mobile Developer intern I shipped new feature enhancements, redesigned UI flows, and maintained the production app used by women across Malaysia managing PCOS, menopause and reproductive health.</p>
             <div class="project-tags">
               <span class="tag">Flutter</span>
               <span class="tag">MongoDB</span>
               <span class="tag">AI/ML</span>
               <span class="tag">Telehealth</span>
             </div>
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-fertilemate-detail">
+              <span class="case-toggle-icon" aria-hidden="true">+</span>
+              <span class="label-closed">Read the case study</span>
+              <span class="label-open">Close</span>
+            </button>
           </div>
-        </div>
+          <div class="case-detail" id="case-fertilemate-detail">
+            <div class="case-detail-inner">
+              <div class="case-detail-grid">
+                <div class="detail-section">
+                  <h3>Context</h3>
+                  <p>Fertilemate is a production AI-powered fertility &amp; hormonal health platform serving women managing PCOS, menopause, and reproductive wellness. The product combines mobile tracking, telehealth consultations, ultrasound image analysis, and personalized nutrition guidance. Joined as Mobile Developer intern to ship features and support ongoing app maintenance.</p>
+                </div>
+                <div class="detail-section">
+                  <h3>My role</h3>
+                  <p>Mobile Developer (Internship) responsible for the mobile experience: developed new feature enhancements requested by product, redesigned UI flows for cleaner UX, managed the user database, and handled production maintenance — bug fixes, performance issues, and release cycles for both iOS and Android.</p>
+                </div>
+                <div class="detail-section">
+                  <h3>Impact</h3>
+                  <p>Contributed to a live, public-facing health-tech product trusted with sensitive reproductive health data. Gained real-world experience shipping to App Store and Play Store, working with cross-functional teams (design, backend, clinical), and maintaining a codebase used daily by real users — the foundation that led directly to my current role at Zen Computer System.</p>
+                </div>
+              </div>
+              <div class="case-detail-foot">
+                <div class="project-tags">
+                  <span class="tag">Flutter</span>
+                  <span class="tag">Dart</span>
+                  <span class="tag">MongoDB</span>
+                  <span class="tag">AI/ML</span>
+                  <span class="tag">iOS</span>
+                  <span class="tag">Android</span>
+                </div>
+                <a href="https://www.fertilemate.tech" class="cta-button" target="_blank" rel="noopener">Visit Fertilemate <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </div>
+        </article>
 
-        <!-- PROJECT 04: MushroomMate — Final Year Project (Oct 2023) -->
-        <div class="project-card visual-card" data-project="mushroommate">
-          <div class="project-image project-image-dual">
-            <img src="assets/mushroommate/splash.jpg" alt="MushroomMate splash screen" />
-            <img src="assets/mushroommate/landing.jpg" alt="MushroomMate landing screen" />
-            <div class="project-overlay"><span class="view-cta">View Details →</span></div>
+        <!-- 04 · MushroomMate -->
+        <article class="case" id="case-mushroommate" style="--tint: 110, 190, 110;">
+          <div class="case-media" role="button" tabindex="0" aria-label="Toggle MushroomMate case study">
+            <span class="case-ghost" aria-hidden="true">04</span>
+            <span class="case-media-label">Flutter · On-device CNN</span>
+            <img src="assets/mushroommate/splash.jpg" alt="MushroomMate splash screen" loading="lazy" />
+            <img src="assets/mushroommate/landing.jpg" alt="MushroomMate landing screen" loading="lazy" />
           </div>
-          <div class="project-body">
-            <div class="project-header">
-              <h3>MushroomMate</h3>
+          <div class="case-body">
+            <div class="case-top">
+              <span class="case-num">04</span>
               <span class="project-status status-academic">FYP · Oct 2023</span>
             </div>
-            <p class="project-impact">
-              <strong>350+</strong> species classified
-              <span class="impact-divider">·</span>
-              <strong>95%</strong> accuracy
-              <span class="impact-divider">·</span>
-              <strong>Gold Award</strong> winner
-            </p>
-            <p class="project-desc">AI-powered mobile app that distinguishes poisonous from edible mushrooms in real time using a Convolutional Neural Network (CNN) trained on 350+ species. Final Year Project — winner of Gold Award at Karnival Inovasi UMT 2024 and VI-BiiDE 2024.</p>
+            <h2 class="case-title">MushroomMate</h2>
+            <p class="case-meta"><strong>Final Year Project</strong> · Flutter · CNN · 350+ species · 95% accuracy · 2× Gold award</p>
+            <p class="case-desc">Flutter app that tells poisonous from edible mushrooms in real time using a Convolutional Neural Network trained on 350+ species — fully offline via TensorFlow Lite. Gold at Karnival Inovasi UMT 2024 and VI-BiiDE 2024, bronze at iIDEX 2024.</p>
             <div class="project-tags">
-              <span class="tag">AI/ML</span>
               <span class="tag">Flutter</span>
-              <span class="tag">CNN</span>
               <span class="tag">TensorFlow Lite</span>
+              <span class="tag">CNN</span>
+              <span class="tag">Figma</span>
             </div>
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-mushroommate-detail">
+              <span class="case-toggle-icon" aria-hidden="true">+</span>
+              <span class="label-closed">Read the case study</span>
+              <span class="label-open">Close</span>
+            </button>
           </div>
-        </div>
-
-        <!-- DETAIL PANE: Fertilemate -->
-        <div class="project-detail-pane" data-project="fertilemate">
-          <button class="detail-close" aria-label="Back to all projects">
-            <span class="detail-close-arrow" aria-hidden="true">←</span> Back to Projects
-          </button>
-          <div class="detail-images">
-            <img src="assets/fertilemate/f1.jpg" alt="Fertilemate screen 1" onerror="this.style.display='none'" />
-            <img src="assets/fertilemate/f2.jpg" alt="Fertilemate screen 2" onerror="this.style.display='none'" />
-          </div>
-          <div class="detail-body">
-            <div class="detail-header">
-              <h2>Fertilemate</h2>
-              <span class="project-status status-work">Internship · CS Leaflabs</span>
-            </div>
-            <p class="project-impact">
-              <strong>CS Leaflabs Sdn Bhd</strong>
-              <span class="impact-divider">·</span>
-              <strong>Oct 2024 – 2025</strong>
-              <span class="impact-divider">·</span>
-              <strong>Live</strong> on iOS &amp; Android
-            </p>
-            <div class="detail-section">
-              <h3>Context</h3>
-              <p>Fertilemate is a production AI-powered fertility &amp; hormonal health platform serving women managing PCOS, menopause, and reproductive wellness. The product combines mobile tracking, telehealth consultations, ultrasound image analysis, and personalized nutrition guidance. Joined as Mobile Developer intern to ship features and support ongoing app maintenance.</p>
-            </div>
-            <div class="detail-section">
-              <h3>My Role</h3>
-              <p>Mobile Developer (Internship) responsible for the mobile experience: developed new feature enhancements requested by product, redesigned UI flows for cleaner UX, managed the user database, and handled production maintenance — bug fixes, performance issues, and release cycles for both iOS and Android.</p>
-            </div>
-            <div class="detail-section">
-              <h3>Impact</h3>
-              <p>Contributed to a live, public-facing health-tech product trusted with sensitive reproductive health data. Gained real-world experience shipping to App Store and Play Store, working with cross-functional teams (design, backend, clinical), and maintaining a codebase used daily by real users — a strong foundation that led directly to my current Mobile Developer role at Zen Computer System.</p>
-            </div>
-            <div class="detail-section">
-              <h3>Tech Stack</h3>
-              <div class="project-tags">
-                <span class="tag">Flutter</span>
-                <span class="tag">Dart</span>
-                <span class="tag">MongoDB</span>
-                <span class="tag">AI/ML</span>
-                <span class="tag">iOS</span>
-                <span class="tag">Android</span>
+          <div class="case-detail" id="case-mushroommate-detail">
+            <div class="case-detail-inner">
+              <div class="case-detail-grid">
+                <div class="detail-section">
+                  <h3>Problem</h3>
+                  <p>Foragers and hikers in Malaysia frequently encounter unfamiliar mushrooms — some edible, some lethally toxic. Existing identification apps require an internet connection, but cellular signal in dense forests is unreliable. Misidentification can kill.</p>
+                </div>
+                <div class="detail-section">
+                  <h3>Approach</h3>
+                  <p>Designed the app in Figma and StarUML, trained a custom CNN in Jupyter Notebook with TensorFlow on a dataset of 350+ mushroom species, then converted it to TensorFlow Lite and built the Flutter app around it — point the camera at a mushroom and get a classification in under a second, no signal required.</p>
+                </div>
+                <div class="detail-section">
+                  <h3>Outcome</h3>
+                  <p>~95% classification accuracy on the held-out test set. Presented and demoed publicly as a Final Year Project, then won Gold at Karnival Inovasi UMT 2024 and VI-BiiDE 2024. The offline-first approach proved that field-usable mobile AI is viable without cloud dependency.</p>
+                </div>
               </div>
-            </div>
-            <div class="detail-section">
-              <a href="https://www.fertilemate.tech" class="cta-button" target="_blank" rel="noopener">
-                Visit Fertilemate →
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- DETAIL PANE: MushroomMate -->
-        <div class="project-detail-pane" data-project="mushroommate">
-          <button class="detail-close" aria-label="Back to all projects">
-            <span class="detail-close-arrow" aria-hidden="true">←</span> Back to Projects
-          </button>
-          <div class="detail-images">
-            <img src="assets/mushroommate/splash.jpg" alt="MushroomMate splash screen" />
-            <img src="assets/mushroommate/landing.jpg" alt="MushroomMate landing screen" />
-          </div>
-          <div class="detail-body">
-            <div class="detail-header">
-              <h2>MushroomMate</h2>
-              <span class="project-status status-academic">FYP Project</span>
-            </div>
-            <p class="project-impact">
-              <strong>350+</strong> species classified
-              <span class="impact-divider">·</span>
-              <strong>95%</strong> accuracy
-            </p>
-            <div class="detail-section">
-              <h3>Problem</h3>
-              <p>Foragers and hikers in Malaysia frequently encounter unfamiliar mushrooms — some edible, some lethally toxic. Existing identification apps require an internet connection, but cellular signal in dense forests is unreliable. Misidentification can kill.</p>
-            </div>
-            <div class="detail-section">
-              <h3>Approach</h3>
-              <p>Trained a custom Convolutional Neural Network on a dataset of 350+ mushroom species, optimized for on-device inference. Deployed it as a Flutter app that runs the model entirely offline — point the camera at a mushroom and get a classification in under a second, no signal required.</p>
-            </div>
-            <div class="detail-section">
-              <h3>Outcome</h3>
-              <p>~95% classification accuracy on the held-out test set. Final Year Project submission, presented and demoed publicly. The offline-first approach proved that field-usable mobile AI is viable without cloud dependency.</p>
-            </div>
-            <div class="detail-section">
-              <h3>Tech Stack</h3>
-              <div class="project-tags">
-                <span class="tag">AI/ML</span>
-                <span class="tag">Flutter</span>
-                <span class="tag">CNN</span>
-              </div>
-            </div>
-            <div class="detail-section">
-              <a href="https://youtu.be/MQzuuBVapsY" class="cta-button" target="_blank" rel="noopener">
-                Watch Demo on YouTube →
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- DETAIL PANE: MyIBJKM -->
-        <div class="project-detail-pane" data-project="myibjkm">
-          <button class="detail-close" aria-label="Back to all projects">
-            <span class="detail-close-arrow" aria-hidden="true">←</span> Back to Projects
-          </button>
-          <div class="detail-images">
-            <img src="assets/myibjkm/ib1.png" alt="MyIBJKM screen 1" />
-            <img src="assets/myibjkm/ib2.png" alt="MyIBJKM screen 2" />
-          </div>
-          <div class="detail-body">
-            <div class="detail-header">
-              <h2>MyIBJKM</h2>
-              <span class="project-status status-shipped">Published</span>
-            </div>
-            <p class="project-impact">
-              <strong>iOS</strong> + <strong>Android</strong>
-              <span class="impact-divider">·</span>
-              <strong>Native</strong> (separate codebases)
-            </p>
-            <div class="detail-section">
-              <h3>Problem</h3>
-              <p>JKM Malaysia needed a public-facing app for citizens to manage assistance records, family details, and disaster-relief data (BWI / PPS), delivered with platform-native polish on both iOS and Android — and powered by a backend that could integrate with existing JKM systems via ODBC.</p>
-            </div>
-            <div class="detail-section">
-              <h3>Approach</h3>
-              <p>Built it end-to-end. Two separate native mobile codebases — iOS in SwiftUI (HIG-compliant), Android in Java (Material Design) — talking to a vanilla PHP REST API I wrote and maintain. The PHP layer (~30+ endpoints) handles authentication, geo-coordinate listings, PDF generation/preview, QR-code activity, check-in/check-out flows, and family record CRUD against JKM's database via ODBC. JSON in, JSON out, in Bahasa Malaysia where it matters.</p>
-            </div>
-            <div class="detail-section">
-              <h3>Outcome</h3>
-              <p>Live on App Store and Google Play with a backend I own. Each mobile platform feels genuinely native, not "ported." Full-stack ownership means I can debug from screen tap to database query — a faster feedback loop than splitting the work across separate teams, and exactly the kind of context recruiters look for in a mobile developer who can ship.</p>
-            </div>
-            <div class="detail-section">
-              <h3>Tech Stack</h3>
-              <div class="project-tags">
-                <span class="tag">SwiftUI</span>
-                <span class="tag">Java</span>
-                <span class="tag">PHP</span>
-                <span class="tag">MySQL</span>
-                <span class="tag">ODBC</span>
-                <span class="tag">REST API</span>
-                <span class="tag">iOS</span>
-                <span class="tag">Android</span>
+              <div class="case-detail-foot">
+                <div class="project-tags">
+                  <span class="tag">Flutter</span>
+                  <span class="tag">Dart</span>
+                  <span class="tag">TensorFlow</span>
+                  <span class="tag">TensorFlow Lite</span>
+                  <span class="tag">CNN</span>
+                  <span class="tag">Jupyter</span>
+                  <span class="tag">Figma</span>
+                  <span class="tag">StarUML</span>
+                </div>
+                <a href="https://youtu.be/MQzuuBVapsY" class="cta-button" target="_blank" rel="noopener">Watch the demo <span aria-hidden="true">↗</span></a>
               </div>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- DETAIL PANE: SKALA 2.0 -->
-        <div class="project-detail-pane" data-project="skala">
-          <button class="detail-close" aria-label="Back to all projects">
-            <span class="detail-close-arrow" aria-hidden="true">←</span> Back to Projects
-          </button>
-          <div class="detail-images">
-            <img src="assets/skala%202.0/s1.png" alt="SKALA 2.0 login screen" />
-            <img src="assets/skala%202.0/s2.png" alt="SKALA 2.0 dashboard" />
-          </div>
-          <div class="detail-body">
-            <div class="detail-header">
-              <h2>SKALA 2.0</h2>
-              <span class="project-status status-progress">In Progress</span>
-            </div>
-            <p class="project-impact">
-              <strong>iOS</strong> + <strong>Android</strong>
-              <span class="impact-divider">·</span>
-              Single codebase · BLoC
-            </p>
-            <div class="detail-section">
-              <h3>Problem</h3>
-              <p>Jabatan Kerja Raya (JKR) — Malaysia's Public Works Department — needed to track infrastructure project status and progress in real time. Field officers and supervisors were spread across both iOS and Android devices, and the previous workflow couldn't keep status updates synchronized. Each platform divergence meant duplicated bugs and longer delivery cycles.</p>
-            </div>
-            <div class="detail-section">
-              <h3>Approach</h3>
-              <p>Chose Flutter with the BLoC (Business Logic Component) pattern to ship one codebase to both platforms while keeping business logic cleanly separated from UI. BLoC's stream-based state management made real-time status updates predictable and testable. Single codebase = changes ship to both platforms simultaneously.</p>
-            </div>
-            <div class="detail-section">
-              <h3>Outcome</h3>
-              <p>In-progress build delivering near-native performance on both iOS and Android from a single codebase. The BLoC architecture cut state-related bugs significantly and made feature additions faster — typical for a government project where reliability matters more than novelty.</p>
-            </div>
-            <div class="detail-section">
-              <h3>Tech Stack</h3>
-              <div class="project-tags">
-                <span class="tag">Flutter</span>
-                <span class="tag">BLoC</span>
-                <span class="tag">iOS</span>
-                <span class="tag">Android</span>
-              </div>
-            </div>
-          </div>
+      </div>
+
+      <!-- Smaller projects from the resume -->
+      <div class="more-projects">
+        <div class="more-head">
+          <span class="eyebrow">Also built</span>
+          <h2 class="more-title">Earlier <em>work</em>.</h2>
         </div>
+        <ul class="more-list">
+          <li>
+            <span class="more-year">2023</span>
+            <div>
+              <h3>Fitness Pal</h3>
+              <p>Flutter app for finding and connecting with friends for joint training sessions — Firebase Authentication for sign-up and Google Maps API for geolocation.</p>
+            </div>
+            <span class="more-stack">Flutter · Dart · Firebase · Google Maps API</span>
+          </li>
+          <li>
+            <span class="more-year">2023</span>
+            <div>
+              <h3>Diary</h3>
+              <p>UI/UX-focused notes and diary app with full CRUD, dark mode, hamburger menu, favourites toggle and colour themes.</p>
+            </div>
+            <span class="more-stack">Flutter · Dart</span>
+          </li>
+          <li>
+            <span class="more-year">2023</span>
+            <div>
+              <h3>Cake-delivery app wireframes</h3>
+              <p>Human-Computer Interaction coursework: lo-fi wireframes in Procreate and hi-fi prototype in Figma using a flat design system.</p>
+            </div>
+            <span class="more-stack">Figma · Procreate</span>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
@@ -370,8 +359,28 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="container">
-      <p>&copy; 2026 Shazlin Nizam. All rights reserved.</p>
+    <div class="footer-grid">
+      <div>
+        <p class="footer-big">Let's build<br>something <em>useful</em>.</p>
+        <p class="footer-blurb">Open to remote / hybrid Solution &amp; Mobile Developer roles.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="work.html">Work</a>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <a href="https://www.linkedin.com/in/shazlin-nizam-a-072967308/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/nizamAmirul10" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="Resume-public.pdf" download="Shazlin-Nizam-Resume.pdf">Resume (PDF) ↓</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Shazlin Nizam</span>
+      <span>Kuala Lumpur, Malaysia</span>
     </div>
   </footer>
 

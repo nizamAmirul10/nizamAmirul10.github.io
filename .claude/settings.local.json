@@ -3,7 +3,20 @@
     "allow": [
       "PowerShell($content = Get-Content \"style.css\" -Raw; $opens = \\($content.ToCharArray\\(\\) | Where-Object { $_ -eq '{' }\\).Count; $closes = \\($content.ToCharArray\\(\\) | Where-Object { $_ -eq '}' }\\).Count; \"open: $opens, close: $closes, diff: $\\($opens - $closes\\)\")",
       "Bash(git rm *)",
-      "WebFetch(domain:www.fertilemate.tech)"
+      "WebFetch(domain:www.fertilemate.tech)",
+      "Bash(python -c \"import playwright; print\\('playwright OK'\\)\")",
+      "Bash(python -m pip install playwright)",
+      "Bash(python -m playwright install chromium)",
+      "Bash(python -c \"import pypdf; r=pypdf.PdfReader\\('Resume.pdf'\\); print\\('pages',len\\(r.pages\\)\\); [print\\(p.extract_text\\(\\)\\) for p in r.pages]\")",
+      "Bash(pip install *)",
+      "Bash(python -m pip install pypdf -q)",
+      "Bash(python -c \"import pypdf; r=pypdf.PdfReader\\('Resume.pdf'\\); print\\('pages',len\\(r.pages\\)\\); [print\\('---PAGE',i,'---\\\\n',p.extract_text\\(\\)\\) for i,p in enumerate\\(r.pages\\)]\")",
+      "Bash(python -c \"import pypdf; r=pypdf.PdfReader\\('Resume.pdf'\\); open\\('_resume_dump.txt','w',encoding='utf-8'\\).write\\('\\\\n'.join\\('---PAGE %d---\\\\n%s'%\\(i,p.extract_text\\(\\)\\) for i,p in enumerate\\(r.pages\\)\\)\\)\")",
+      "Bash(python -c \"import fitz; print\\('fitz ok', fitz.__doc__[:50]\\)\")",
+      "Bash(python -m pip install pymupdf -q)",
+      "Bash(python -c \"import fitz; print\\('fitz ok'\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(python -c \"print\\(open\\('script.js',encoding='utf-8'\\).read\\(\\)\\)\")"
     ]
   }
 }

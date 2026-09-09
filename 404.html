@@ -7,24 +7,28 @@
   <title>404 — Page Not Found | Shazlin Nizam</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="description" content="That page doesn't exist." />
-  <meta name="theme-color" content="#0a0e27" />
+  <meta name="theme-color" content="#0b0b0c" />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <canvas id="pixel-canvas" class="pixel-bg" aria-hidden="true"></canvas>
 
-  <div class="subhead">
-    <nav class="nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="projects.html" class="nav-link">Projects</a>
-      <a href="work.html" class="nav-link">Work</a>
+  <header class="subhead">
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="nav-brand" aria-label="Shazlin Nizam — home">SN<span>.</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="work.html" class="nav-link">Work</a>
+      </div>
+      <span class="nav-time" id="nav-time" aria-label="Local time in Kuala Lumpur">KL —:—</span>
     </nav>
-  </div>
+  </header>
 
   <section class="notfound-section">
     <div class="container">

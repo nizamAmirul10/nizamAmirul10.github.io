@@ -10,7 +10,7 @@
   <!-- SEO -->
   <meta name="description" content="Shazlin Nizam — Mobile Developer at Zen Computer System building production iOS &amp; Android apps in Malaysia. Published government &amp; health-tech work." />
   <meta name="author" content="Shazlin Nizam" />
-  <meta name="theme-color" content="#0a0e27" />
+  <meta name="theme-color" content="#0b0b0c" />
 
   <!-- Open Graph (LinkedIn, WhatsApp, Facebook) -->
   <meta property="og:type" content="website" />
@@ -25,12 +25,10 @@
   <meta name="twitter:description" content="Solution & Mobile Developer building iOS, Android, and government apps in Malaysia." />
   <meta name="twitter:image" content="https://nizamamirul10.github.io/preview.jpg" />
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="hero-modern.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 
   <!-- Structured data — helps Google build a knowledge entry for searches of your name -->
   <script type="application/ld+json">
@@ -73,182 +71,222 @@
   <div class="cursor-hint" id="cursor-hint" aria-hidden="true">move your cursor →</div>
 
   <!-- TOP NAV -->
-  <div class="subhead">
-    <nav class="nav">
-      <a href="index.html" class="nav-link active">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="projects.html" class="nav-link">Projects</a>
-      <a href="work.html" class="nav-link">Work</a>
+  <header class="subhead">
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="nav-brand" aria-label="Shazlin Nizam — home">SN<span>.</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="work.html" class="nav-link">Work</a>
+      </div>
+      <span class="nav-time" id="nav-time" aria-label="Local time in Kuala Lumpur">KL —:—</span>
     </nav>
-  </div>
+  </header>
 
   <main>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <section id="home" class="hero">
-    <div class="hero-content">
-      <!-- Left Stack: Terminal + Phone Nav -->
-      <div class="hero-left-stack">
-      <!-- Terminal Window -->
-      <div class="terminal-window">
-        <div class="terminal-header">
-          <div class="terminal-buttons">
-            <span class="btn-close"></span>
-            <span class="btn-minimize"></span>
-            <span class="btn-maximize"></span>
-          </div>
-          <div class="terminal-title">shazlin@developer:~</div>
-        </div>
-        <div class="terminal-body">
-          <div class="terminal-line">
-            <span class="prompt">$</span>
-            <span class="command">whoami</span>
-          </div>
-          <div class="terminal-output">shazlin — Mobile Developer @ Zen Computer System Sdn Bhd</div>
-          <div class="terminal-line">
-            <span class="prompt">$</span>
-            <span class="command">status --availability</span>
-          </div>
-          <div class="terminal-output">
-            <span class="status-ok">✓</span> Open to new opportunities
-          </div>
-          <div class="terminal-line">
-            <span class="prompt">$</span>
-            <span class="command typing-cursor"></span>
-          </div>
-        </div>
-      </div>
+    <div class="hero-grid">
 
-      </div>
-      <!-- /hero-left-stack -->
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>Mobile Developer · Zen Computer System Sdn Bhd</p>
 
-      <!-- Profile Card -->
-      <div class="profile-card">
-        <div class="profile-image-wrapper">
-          <div class="profile-glow"></div>
-          <img src="images/profile.jpg" alt="Shazlin Nizam" class="profile-image">
-          <div class="status-indicator">
-            <span class="status-dot"></span>
-            <span class="status-text">Available for work</span>
-          </div>
+        <h1 class="display">Shazlin<br><em>Nizam</em><span class="display-dot">.</span></h1>
+
+        <p class="lede">
+          I build production iOS &amp; Android apps for government and health-tech — Flutter, SwiftUI and native Android — shipped to real users across Malaysia.
+        </p>
+
+        <div class="hero-actions">
+          <button type="button" class="btn btn-primary contact-toggle" data-default="Email me" data-revealed="shazlinnizam@gmail.com">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="contact-text">Email me</span>
+          </button>
+          <a href="https://www.linkedin.com/in/shazlin-nizam-a-072967308/" class="btn btn-ghost" target="_blank" rel="noopener" aria-label="LinkedIn profile (opens in new tab)">
+            LinkedIn <span class="btn-arrow" aria-hidden="true">↗</span>
+          </a>
+          <button type="button" class="btn btn-ghost" id="resumeBtn" aria-label="View resume (opens viewer)">
+            Resume <span class="btn-arrow" aria-hidden="true">↗</span>
+          </button>
         </div>
 
-        <div class="profile-info">
-          <h1 class="name">
-            <span class="code-bracket">&lt;</span>
-            Shazlin Nizam
-            <span class="code-bracket">/&gt;</span>
-          </h1>
-          <p class="role">
-            <span class="role-icon">⚡</span>
-            Solution & Mobile Developer
-          </p>
-          <p class="tagline">
-            Mobile Developer at <strong>Zen Computer System Sdn Bhd</strong>. I build production iOS &amp; Android apps — strong in Flutter, native development, and shipping clean, user-focused mobile experiences.
-          </p>
-
-          <div class="contact-grid">
-            <button type="button" class="contact-link contact-toggle" data-default="Email" data-revealed="shazlinnizam@gmail.com">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-              </svg>
-              <span class="contact-text">Email</span>
-            </button>
-            <a href="https://www.linkedin.com/in/shazlin-nizam-a-072967308/" class="contact-link" target="_blank" rel="noopener" aria-label="LinkedIn profile (opens in new tab)">
-              <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-              </svg>
-              <span>LinkedIn</span>
-            </a>
-            <a href="https://github.com/nizamAmirul10" class="contact-link" target="_blank" rel="noopener" aria-label="GitHub profile (opens in new tab)">
-              <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-              <span>GitHub</span>
-            </a>
+        <!-- Session log — lines reveal one at a time (script.js) -->
+        <div class="terminal-window" aria-label="Status">
+          <div class="terminal-header">
+            <span class="terminal-title">shazlin@zen — ~/portfolio</span>
+            <span>zsh</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line">
+              <span class="prompt">$</span>
+              <span class="command">whoami</span>
+            </div>
+            <div class="terminal-output">shazlin — Mobile Developer @ Zen Computer System Sdn Bhd</div>
+            <div class="terminal-line">
+              <span class="prompt">$</span>
+              <span class="command">status --availability</span>
+            </div>
+            <div class="terminal-output">
+              <span class="status-ok">✓</span> Open to remote / hybrid Solution Developer roles
+            </div>
+            <div class="terminal-line">
+              <span class="prompt">$</span>
+              <span class="command typing-cursor"></span>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Portrait -->
+      <figure class="portrait">
+        <div class="portrait-frame">
+          <img src="images/profile.jpg" alt="Shazlin Nizam, Mobile Developer" class="profile-image" width="864" height="1184" fetchpriority="high">
+        </div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span class="status-text">Available for work</span>
+        </div>
+        <span class="portrait-side" aria-hidden="true">Portfolio — 2026</span>
+        <figcaption class="portrait-caption">
+          <span>Kuala Lumpur, MY</span>
+          <span>Flutter · SwiftUI · Java</span>
+        </figcaption>
+      </figure>
+
     </div>
 
-    <!-- FEATURED PROJECTS — magazine-style hover reveal, now inside the hero -->
+    <!-- Proof strip -->
+    <div class="hero-stats">
+      <ul>
+        <li><span class="stat-num">4</span><span class="stat-label">Mobile projects</span></li>
+        <li><span class="stat-num">2</span><span class="stat-label">Live on App Store &amp; Play</span></li>
+        <li><span class="stat-num">2<em>×</em></span><span class="stat-label">Gold awards</span></li>
+        <li><span class="stat-num">30<em>+</em></span><span class="stat-label">PHP endpoints built or reworked</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- STACK TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item">Flutter</span>
+      <span class="ticker-item">SwiftUI</span>
+      <span class="ticker-item">Firebase</span>
+      <span class="ticker-item">Dart</span>
+      <span class="ticker-item">Java</span>
+      <span class="ticker-item">BLoC</span>
+      <span class="ticker-item">PHP</span>
+      <span class="ticker-item">MySQL</span>
+      <span class="ticker-item">REST API</span>
+      <span class="ticker-item">TensorFlow Lite</span>
+      <span class="ticker-item">Git</span>
+      <span class="ticker-item">Postman</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item">Flutter</span>
+      <span class="ticker-item">SwiftUI</span>
+      <span class="ticker-item">Firebase</span>
+      <span class="ticker-item">Dart</span>
+      <span class="ticker-item">Java</span>
+      <span class="ticker-item">BLoC</span>
+      <span class="ticker-item">PHP</span>
+      <span class="ticker-item">MySQL</span>
+      <span class="ticker-item">REST API</span>
+      <span class="ticker-item">TensorFlow Lite</span>
+      <span class="ticker-item">Git</span>
+      <span class="ticker-item">Postman</span>
+    </div>
+  </div>
+
+  <!-- FEATURED PROJECTS — editorial hover reveal -->
+  <section id="featured" class="featured-section">
     <div class="featured-inhero">
       <div class="featured-head">
-        <span class="featured-eyebrow">Selected Work</span>
-        <h2 class="featured-title">Featured Projects<span class="featured-title-dot">.</span></h2>
-        <p class="featured-sub">Hover a project to preview.</p>
+        <div>
+          <span class="eyebrow">01 — Selected work</span>
+          <h2 class="featured-title">Featured <em>projects</em><span class="featured-title-dot">.</span></h2>
+        </div>
+        <p class="featured-sub">Hover to preview · click to open</p>
       </div>
 
       <ul class="hover-list" id="hover-list">
-        <li class="hover-list-item">
-          <a href="projects.html" class="hover-list-link">
+        <li class="hover-list-item" data-image="assets/skala%202.0/s2.png">
+          <a href="projects.html#case-skala" class="hover-list-link">
             <span class="hl-num">01</span>
             <span class="hl-name">SKALA 2.0</span>
-            <span class="hl-meta">2026 · Zen Computer · Flutter · BLoC</span>
+            <span class="hl-meta">2026 · Flutter frontend · BLoC · Laravel API</span>
+            <span class="hl-arrow" aria-hidden="true">↗</span>
           </a>
         </li>
-        <li class="hover-list-item">
-          <a href="projects.html" class="hover-list-link">
+        <li class="hover-list-item" data-image="assets/myibjkm/ib2.png">
+          <a href="projects.html#case-myibjkm" class="hover-list-link">
             <span class="hl-num">02</span>
             <span class="hl-name">MyIBJKM</span>
-            <span class="hl-meta">2025 · Full-Stack · SwiftUI · Java · PHP · MySQL</span>
+            <span class="hl-meta">2025 · Solo enhancement · Java · SwiftUI · PHP</span>
+            <span class="hl-arrow" aria-hidden="true">↗</span>
           </a>
         </li>
-        <li class="hover-list-item">
-          <a href="projects.html" class="hover-list-link">
+        <li class="hover-list-item" data-image="assets/fertilemate/f1.png">
+          <a href="projects.html#case-fertilemate" class="hover-list-link">
             <span class="hl-num">03</span>
             <span class="hl-name">Fertilemate</span>
-            <span class="hl-meta">2024 · CS Leaflabs Internship · Flutter · AI Health</span>
+            <span class="hl-meta">2024 · CS Leaflabs · Flutter · AI health</span>
+            <span class="hl-arrow" aria-hidden="true">↗</span>
           </a>
         </li>
-        <li class="hover-list-item">
-          <a href="projects.html" class="hover-list-link">
+        <li class="hover-list-item" data-image="assets/mushroommate/landing.jpg">
+          <a href="projects.html#case-mushroommate" class="hover-list-link">
             <span class="hl-num">04</span>
             <span class="hl-name">MushroomMate</span>
-            <span class="hl-meta">2023 · FYP · Flutter · AI/ML · CNN</span>
+            <span class="hl-meta">2023 · FYP · Flutter · CNN · Gold award</span>
+            <span class="hl-arrow" aria-hidden="true">↗</span>
           </a>
         </li>
       </ul>
 
-      <a href="projects.html" class="featured-more">View all Details →</a>
+      <a href="projects.html" class="featured-more">View all case studies <span aria-hidden="true">→</span></a>
     </div>
-
   </section>
 
-  <!-- CURRENTLY — what I'm actively working on right now -->
+  <!-- NOW — what I'm actively working on -->
   <section id="currently" class="currently-section">
-    <div class="container">
-      <div class="currently-card">
-        <div class="currently-head">
-          <span class="currently-dot"></span>
-          <span class="currently-label">Currently</span>
-        </div>
-        <ul class="currently-list">
-          <li><span class="currently-emoji">💼</span> Mobile Developer at <strong>Zen Computer System Sdn Bhd</strong></li>
-          <li><span class="currently-emoji">📱</span> Building &amp; shipping iOS + Android features with Flutter</li>
-          <li><span class="currently-emoji">📚</span> Deepening SwiftUI animations &amp; modern native iOS patterns</li>
-          <li><span class="currently-emoji">📍</span> Open to remote / hybrid Solution Developer opportunities</li>
-        </ul>
+    <div class="currently-card">
+      <div class="currently-head">
+        <span class="eyebrow"><span class="currently-dot"></span>Now</span>
+        <h2 class="currently-title">What I'm <em>doing</em> right now</h2>
+        <p class="currently-note">Updated Sept 2026</p>
       </div>
+      <ul class="currently-list">
+        <li><span class="currently-idx">01</span><span>Mobile Developer at <strong>Zen Computer System Sdn Bhd</strong></span></li>
+        <li><span class="currently-idx">02</span><span>Building &amp; shipping iOS + Android features with Flutter</span></li>
+        <li><span class="currently-idx">03</span><span>Deepening SwiftUI animations &amp; modern native iOS patterns</span></li>
+        <li><span class="currently-idx">04</span><span>Open to remote / hybrid Solution Developer opportunities</span></li>
+      </ul>
     </div>
   </section>
 
-  <!-- EXPLORE — magazine-style hover for the main site sections -->
+  <!-- EXPLORE -->
   <section id="explore" class="explore-section">
     <div class="featured-inhero">
       <div class="featured-head">
-        <span class="featured-eyebrow">Explore</span>
-        <h2 class="featured-title">More about me<span class="featured-title-dot">.</span></h2>
-        <p class="featured-sub">Hover to preview · click to open.</p>
+        <div>
+          <span class="eyebrow">02 — Explore</span>
+          <h2 class="featured-title">More about <em>me</em><span class="featured-title-dot">.</span></h2>
+        </div>
+        <p class="featured-sub">Hover to preview · click to open</p>
       </div>
 
       <ul class="hover-list" id="explore-list">
-        <li class="hover-list-item" data-image="images/profile.jpg" data-preview="about">
+        <li class="hover-list-item" data-image="images/profile.jpg">
           <a href="about.html" class="hover-list-link">
             <span class="hl-num">→</span>
             <span class="hl-name">About</span>
             <span class="hl-meta">Background · Skills · Awards</span>
+            <span class="hl-arrow" aria-hidden="true">↗</span>
           </a>
         </li>
         <li class="hover-list-item" data-preview="education">
@@ -256,6 +294,7 @@
             <span class="hl-num">→</span>
             <span class="hl-name">Education</span>
             <span class="hl-meta">UiTM Mobile Computing · Engineering Foundation</span>
+            <span class="hl-arrow" aria-hidden="true">↗</span>
           </a>
         </li>
         <li class="hover-list-item" data-preview="work">
@@ -263,6 +302,7 @@
             <span class="hl-num">→</span>
             <span class="hl-name">Work</span>
             <span class="hl-meta">Zen Computer · CS Leaflabs</span>
+            <span class="hl-arrow" aria-hidden="true">↗</span>
           </a>
         </li>
       </ul>
@@ -271,17 +311,59 @@
 
   </main>
 
-  <!-- Floating cursor-following image — shared by both magazine lists -->
+  <!-- Floating cursor-following preview — shared by both lists -->
   <div class="hover-image" id="hover-image" aria-hidden="true">
     <span class="hover-image-label" id="hover-image-label"></span>
   </div>
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="container">
-      <p>&copy; 2026 Shazlin Nizam. All rights reserved.</p>
+    <div class="footer-grid">
+      <div>
+        <p class="footer-big">Let's build<br>something <em>useful</em>.</p>
+        <p class="footer-blurb">Open to remote / hybrid Solution &amp; Mobile Developer roles.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="work.html">Work</a>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <a href="https://www.linkedin.com/in/shazlin-nizam-a-072967308/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/nizamAmirul10" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="Resume-public.pdf" download="Shazlin-Nizam-Resume.pdf">Resume (PDF) ↓</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Shazlin Nizam</span>
+      <span>Kuala Lumpur, Malaysia</span>
     </div>
   </footer>
+
+  <!-- RESUME VIEWER MODAL -->
+  <div id="resumeModal" class="modal resume-modal" role="dialog" aria-modal="true" aria-label="Resume viewer">
+    <div class="modal-overlay" data-resume-close></div>
+    <div class="modal-container resume-modal-container">
+      <button class="modal-close" data-resume-close aria-label="Close resume viewer">&times;</button>
+      <div class="resume-modal-bar">
+        <span class="resume-modal-title">Resume — Shazlin Nizam</span>
+        <a href="Resume-public.pdf" download="Shazlin-Nizam-Resume.pdf" class="resume-download-btn">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Download</span>
+        </a>
+      </div>
+      <div class="resume-viewer">
+        <iframe id="resumeFrame" title="Resume PDF" src="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
