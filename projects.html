@@ -10,7 +10,7 @@
   <!-- SEO -->
   <meta name="description" content="Mobile and software projects by Shazlin Nizam — including a published government app and iOS/Android builds." />
   <meta name="author" content="Shazlin Nizam" />
-  <meta name="theme-color" content="#0b0b0c" />
+  <meta name="theme-color" content="#f2ecde" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -28,20 +28,25 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Sacramento&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
   <a href="#projects" class="skip-link">Skip to content</a>
 
-  <!-- Site-wide cursor-reactive pixel grid background -->
-  <canvas id="pixel-canvas" class="pixel-bg" aria-hidden="true"></canvas>
+  <!-- Selvedge — the finished edges of the cloth -->
+  <div class="selvedge selvedge--left" aria-hidden="true"></div>
+  <div class="selvedge selvedge--right" aria-hidden="true"></div>
+
+  <!-- The loom: a live songket weave. The cursor is the light source;
+       the gold supplementary weft is what catches it. -->
+  <canvas id="tenun-canvas" class="tenun-bg" aria-hidden="true"></canvas>
 
   <!-- TOP NAV -->
   <header class="subhead">
     <nav class="nav" aria-label="Primary">
-      <a href="index.html" class="nav-brand" aria-label="Shazlin Nizam — home">SN<span>.</span></a>
+      <a href="index.html" class="nav-brand" aria-label="Shazlin Nizam — home"><span class="brand-weave" aria-hidden="true"><svg class="brand-mark" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="5" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="5" y="2" width="1" height="1"/><rect x="6" y="2" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="5" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="4" y="4" width="1" height="1"/><rect x="7" y="4" width="1" height="1"/><rect x="1" y="5" width="1" height="1"/><rect x="2" y="5" width="1" height="1"/><rect x="3" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="9" y="5" width="1" height="1"/><rect x="10" y="5" width="1" height="1"/><rect x="1" y="6" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="5" y="6" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="9" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/><rect x="4" y="7" width="1" height="1"/><rect x="7" y="7" width="1" height="1"/><rect x="3" y="8" width="1" height="1"/><rect x="5" y="8" width="1" height="1"/><rect x="6" y="8" width="1" height="1"/><rect x="8" y="8" width="1" height="1"/><rect x="5" y="9" width="1" height="1"/><rect x="6" y="9" width="1" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/></svg></span><span class="brand-name">Shazlin Nizam</span></a>
       <div class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link">About</a>
@@ -60,10 +65,21 @@
       <header class="page-head">
         <div>
           <span class="eyebrow">02 — Projects</span>
+          <span class="eyebrow-my">kajian kes</span>
           <h1 class="page-title">Case <em>studies</em>.</h1>
         </div>
         <p class="page-sub">Four apps — from a government field-monitoring tool to an offline CNN classifier. Open any one for the full write-up.</p>
       </header>
+
+      <!-- A reviewer looks for a repository first. Say why there isn't one,
+           plainly, rather than leaving the silence to be read as "nothing to
+           show". Respecting client IP is itself a professional signal. -->
+      <aside class="code-note">
+        <span class="code-note-label">On the code</span>
+        <p>
+          <strong>SKALA 2.0</strong> and <strong>MyIBJKM</strong> are built for JKR and JKM inside client infrastructure, and <strong>Fertilemate</strong> is a private product codebase. None of those are mine to publish. What the case studies below give you instead is what I would walk you through in a code review: the architecture, the trade-offs, the performance work, and exactly which parts I own end to end. Ask me and I will screen-share any of it.
+        </p>
+      </aside>
 
       <nav class="case-nav" aria-label="Jump to project">
         <a href="#case-skala" class="case-nav-link"><span>01</span>SKALA 2.0</a>
@@ -118,6 +134,11 @@
                   <p>One codebase running on iOS and Android, already pointed at JKR's production API, with roughly half of the repository's commits mine across the app's screens, API layer and config. BLoC keeps business logic separate from UI, so new features land on both platforms at once.</p>
                 </div>
               </div>
+              <div class="case-tradeoff">
+                <span class="case-tradeoff-label">The trade-off</span>
+                <h4>Boilerplate now, or the same rule written twice</h4>
+                <p>BLoC is not the fastest way to get a first screen on the glass, and a lighter state approach would have looked quicker in week one. With five user roles reading the same data and two platforms to keep in step, I took the up-front cost so that a change to a business rule lands once instead of being re-implemented per screen and per platform.</p>
+              </div>
               <div class="case-detail-foot">
                 <div class="project-tags">
                   <span class="tag">Flutter</span>
@@ -159,6 +180,12 @@
               <span class="tag">Android Studio</span>
               <span class="tag">Xcode</span>
             </div>
+            <div class="store-links">
+              <a class="store-link" href="https://play.google.com/store/apps/details?id=my.gov.onegovappstore.myibjkm&amp;hl=ms" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.6 1.8z"/><path d="M16.8 16.2l-3.3-3.3v-.2l3.3-3.3.1.1 3.9 2.2c1.1.6 1.1 1.7 0 2.3l-4 2.2z"/><path d="M16.9 16.1L13.5 12.7 3.6 22.6c.4.4 1 .4 1.7.1l11.6-6.6z"/><path d="M16.9 7.9L5.3 1.3C4.6 1 4 1 3.6 1.4l9.9 9.9 3.4-3.4z"/></svg>
+                <span>Get it on <strong>Google Play</strong></span>
+              </a>
+            </div>
             <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-myibjkm-detail">
               <span class="case-toggle-icon" aria-hidden="true">+</span>
               <span class="label-closed">Read the case study</span>
@@ -180,6 +207,11 @@
                   <h3>Outcome</h3>
                   <p>Live on the App Store and Google Play. Handling every layer of the change — PHP, Android and iOS — meant one person could trace an issue from screen tap to SQL query, and JKM got the new aid features without spinning up a separate backend team.</p>
                 </div>
+              </div>
+              <div class="case-tradeoff">
+                <span class="case-tradeoff-label">The trade-off</span>
+                <h4>Two native codebases, on purpose</h4>
+                <p>The tempting move was to rewrite both apps in Flutter and maintain one codebase, which is what I would rather maintain. I kept them native. The app was already published and holding citizens' family and disaster-relief records, and a rewrite would have put a working government service at risk to buy me convenience. Two codebases is the more expensive answer and it was the right one.</p>
               </div>
               <div class="case-detail-foot">
                 <div class="project-tags">
@@ -219,6 +251,12 @@
               <span class="tag">AI/ML</span>
               <span class="tag">Telehealth</span>
             </div>
+            <div class="store-links">
+              <a class="store-link" href="https://play.google.com/store/apps/details?id=com.fertilemate.app&amp;hl=en" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.6 1.8z"/><path d="M16.8 16.2l-3.3-3.3v-.2l3.3-3.3.1.1 3.9 2.2c1.1.6 1.1 1.7 0 2.3l-4 2.2z"/><path d="M16.9 16.1L13.5 12.7 3.6 22.6c.4.4 1 .4 1.7.1l11.6-6.6z"/><path d="M16.9 7.9L5.3 1.3C4.6 1 4 1 3.6 1.4l9.9 9.9 3.4-3.4z"/></svg>
+                <span>Get it on <strong>Google Play</strong></span>
+              </a>
+            </div>
             <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-fertilemate-detail">
               <span class="case-toggle-icon" aria-hidden="true">+</span>
               <span class="label-closed">Read the case study</span>
@@ -240,6 +278,11 @@
                   <h3>Impact</h3>
                   <p>Contributed to a live, public-facing health-tech product trusted with sensitive reproductive health data. Gained real-world experience shipping to App Store and Play Store, working with cross-functional teams (design, backend, clinical), and maintaining a codebase used daily by real users — the foundation that led directly to my current role at Zen Computer System.</p>
                 </div>
+              </div>
+              <div class="case-tradeoff">
+                <span class="case-tradeoff-label">The trade-off</span>
+                <h4>Change a live health product from the inside</h4>
+                <p>Redesigning the flows would have been cleaner on a blank page. I shipped the changes into the running app instead, in pieces, because it was already trusted with sensitive reproductive health data and its users were mid-cycle. Incremental is slower and it does not lose anyone's history.</p>
               </div>
               <div class="case-detail-foot">
                 <div class="project-tags">
@@ -300,6 +343,11 @@
                   <p>~95% classification accuracy on the held-out test set. Presented and demoed publicly as a Final Year Project, then won Gold at Karnival Inovasi UMT 2024 and VI-BiiDE 2024. The offline-first approach proved that field-usable mobile AI is viable without cloud dependency.</p>
                 </div>
               </div>
+              <div class="case-tradeoff">
+                <span class="case-tradeoff-label">The trade-off</span>
+                <h4>A worse model they can actually reach</h4>
+                <p>A cloud-hosted classifier would have been more accurate and far easier to retrain. I converted the CNN to TensorFlow Lite and shipped it inside the app instead, accepting a lower accuracy ceiling and a heavier download. The people who need it are standing in a forest with no signal, and a better answer they cannot reach is worth nothing.</p>
+              </div>
               <div class="case-detail-foot">
                 <div class="project-tags">
                   <span class="tag">Flutter</span>
@@ -323,6 +371,7 @@
       <div class="more-projects">
         <div class="more-head">
           <span class="eyebrow">Also built</span>
+          <span class="eyebrow-my">kerja awal</span>
           <h2 class="more-title">Earlier <em>work</em>.</h2>
         </div>
         <ul class="more-list">
@@ -362,7 +411,7 @@
     <div class="footer-grid">
       <div>
         <p class="footer-big">Let's build<br>something <em>useful</em>.</p>
-        <p class="footer-blurb">Open to remote / hybrid Solution &amp; Mobile Developer roles.</p>
+        <p class="footer-blurb">Open to remote / hybrid Solution &amp; Mobile Developer roles. Woven in Kuala Lumpur.</p>
       </div>
       <div class="footer-col">
         <h4>Pages</h4>

@@ -1,131 +1,245 @@
-// =========================
-// REDUCED MOTION PREFERENCE
-// — respects users who set "Reduce motion" in their OS (accessibility)
-// =========================
+/* ============================================================
+   SHAZLIN NIZAM — "TENUN"
+   ------------------------------------------------------------
+   The loom, and everything that runs on the cloth.
+   ============================================================ */
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// =========================
-// PIXEL GRID BACKGROUND
-// — Cursor-reactive grid: cells near the pointer light up then fade out.
-//   Mostly ivory sparks with the occasional accent cell — reads as static/film grain.
-// =========================
-const pixelCanvas = document.getElementById('pixel-canvas');
-if (pixelCanvas && !prefersReducedMotion) {
-    const pctx = pixelCanvas.getContext('2d');
-    const cellSize = 30;
-    const palette = ['#f2efe6', '#f2efe6', '#a9a69d', '#d4f04f'];
-    const influenceCells = 4;     // radius in cells
-    const fadeRate = 0.92;        // per-frame alpha decay
-    const peakAlpha = 0.4;
+/* ============================================================
+   THE LOOM
+   ------------------------------------------------------------
+   Songket is woven cell by cell: a dark silk ground, and on top of
+   it a supplementary weft of gold thread that floats across the
+   surface to build the motif. Because the loom is a grid, every
+   motif is stepped — a rosette is a diamond built of little
+   rectangles of gold. That is what is drawn here: a repeating
+   bunga pecah lapan (eight-point rosette) with tampuk manggis at
+   the tile corners and bunga tabur between, in gold floats on the
+   black-green ground. The cursor is the light; gold catches it.
+   ============================================================ */
+(function loom() {
+    const canvas = document.getElementById('tenun-canvas') || document.getElementById('pixel-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
 
-    let cols = 0;
-    let rows = 0;
-    let cells = [];
-    let cursorX = -9999;
-    let cursorY = -9999;
+    const T = 24;                 // motif tile, in cells
+    const CELL = 5;               // one woven cell, px
+    const TILE = T * CELL;
+    const LIGHT_R = 240;
+    const GOLD = '216, 180, 90';
+    const GLINT = '240, 210, 122';
 
-    function resizePixelCanvas() {
-        const dpr = window.devicePixelRatio || 1;
-        const rect = pixelCanvas.getBoundingClientRect();
-        pixelCanvas.width = rect.width * dpr;
-        pixelCanvas.height = rect.height * dpr;
-        pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        cols = Math.ceil(rect.width / cellSize);
-        rows = Math.ceil(rect.height / cellSize);
-        cells = new Array(cols * rows).fill(null).map(() => ({ alpha: 0, color: palette[0] }));
+    /* --- the motif, defined on the loom's grid ------------------ */
+    const c = (T - 1) / 2;
+    function motif(i, j) {
+        const dx = Math.abs(i - c);
+        const dy = Math.abs(j - c);
+        const d1 = dx + dy;
+        // bunga pecah lapan — the eight-point rosette
+        if (d1 <= 1) return 2;                                                  // heart
+        if (d1 === 4) return 1;                                                 // inner ring
+        if (d1 >= 5 && d1 <= 7 && (Math.min(dx, dy) === 0.5 || dx === dy)) return 1; // eight arms
+        if (d1 === 9) return 2;                                                 // outer ring
+        // tampuk manggis — mangosteen calyx at the corners (wraps across tiles)
+        const ex = Math.min(i + 0.5, T - i - 0.5);
+        const ey = Math.min(j + 0.5, T - j - 0.5);
+        if (ex + ey <= 2) return 2;
+        if (ex + ey === 4) return 1;
+        // bunga tabur — a small scattered flower at the edge midpoints
+        if ((Math.abs(i - c) + ey <= 2) || (ex + Math.abs(j - c) <= 2)) return 1;
+        return 0;
     }
 
-    function lightUpNearCursor() {
-        if (cursorX < 0) return;
-        const rect = pixelCanvas.getBoundingClientRect();
-        const localX = cursorX - rect.left;
-        const localY = cursorY - rect.top;
-        if (localX < 0 || localX > rect.width || localY < 0 || localY > rect.height) return;
+    const tileCells = [];
+    for (let j = 0; j < T; j++) {
+        for (let i = 0; i < T; i++) {
+            const w = motif(i, j);
+            if (w) tileCells.push({ i, j, w });
+        }
+    }
+    // the same motif is woven onto the 3D cloth in kain.js
+    window.__tenunTile = { T, cells: tileCells };
 
-        const centerCol = Math.floor(localX / cellSize);
-        const centerRow = Math.floor(localY / cellSize);
+    let w = 0;
+    let h = 0;
+    let dpr = 1;
+    let tiles = [];
+    let still = null;
+    let cx = -9999;
+    let cy = -9999;
+    let t = 0;
 
-        for (let dr = -influenceCells; dr <= influenceCells; dr++) {
-            for (let dc = -influenceCells; dc <= influenceCells; dc++) {
-                const r = centerRow + dr;
-                const c = centerCol + dc;
-                if (r < 0 || r >= rows || c < 0 || c >= cols) continue;
-                const dist = Math.sqrt(dr * dr + dc * dc);
-                if (dist > influenceCells) continue;
-                const intensity = (1 - dist / influenceCells) * peakAlpha;
-                const cell = cells[r * cols + c];
-                if (cell.alpha < intensity) {
-                    cell.alpha = intensity;
-                    cell.color = palette[Math.floor(Math.random() * palette.length)];
+    /* --- paint the whole cloth once, at rest -------------------- */
+    function paintStill() {
+        still = document.createElement('canvas');
+        still.width = canvas.width;
+        still.height = canvas.height;
+        const g = still.getContext('2d');
+        g.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        // the silk ground — warp and weft, barely there
+        g.strokeStyle = 'rgba(242, 236, 222, 0.028)';
+        g.lineWidth = 1;
+        g.beginPath();
+        for (let x = 0.5; x < w; x += CELL) { g.moveTo(x, 0); g.lineTo(x, h); }
+        for (let y = 0.5; y < h; y += CELL) { g.moveTo(0, y); g.lineTo(w, y); }
+        g.stroke();
+
+        // every gold float, at rest
+        for (const tile of tiles) {
+            for (const cell of tileCells) {
+                floatRect(g, tile.x + cell.i * CELL, tile.y + cell.j * CELL, cell.w === 2 ? 0.085 : 0.05, GOLD);
+            }
+        }
+    }
+
+    function floatRect(g, x, y, alpha, rgb) {
+        g.fillStyle = `rgba(${rgb}, ${alpha})`;
+        // a float is a short length of thread lying across the ground:
+        // wider than tall, with a hair of ground showing between rows
+        g.fillRect(x + 0.4, y + 0.9, CELL - 0.8, CELL - 1.8);
+    }
+
+    function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = canvas.getBoundingClientRect();
+        w = rect.width;
+        h = rect.height;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        tiles = [];
+        for (let y = -TILE / 2; y < h; y += TILE) {
+            for (let x = -TILE / 2; x < w; x += TILE) tiles.push({ x, y });
+        }
+        paintStill();
+        ctx.clearRect(0, 0, w, h);
+        ctx.drawImage(still, 0, 0, w, h);
+    }
+
+    /* --- the living frame: only what the light touches ---------- */
+    function frame() {
+        ctx.clearRect(0, 0, w, h);
+        ctx.drawImage(still, 0, 0, w, h);
+
+        t += 0.0016;
+        const span = w + h * 0.6 + 800;
+        const sheen = ((t % 1) * span) - 400;
+        const sheenW = 300;
+        const reach = LIGHT_R + TILE;
+
+        for (const tile of tiles) {
+            const tcx = tile.x + TILE / 2;
+            const tcy = tile.y + TILE / 2;
+            const nearCursor = Math.abs(tcx - cx) < reach && Math.abs(tcy - cy) < reach;
+            const along = tcx + tcy * 0.6;
+            const nearSheen = Math.abs(along - sheen) < sheenW + TILE;
+            if (!nearCursor && !nearSheen) continue;
+
+            for (const cell of tileCells) {
+                const x = tile.x + cell.i * CELL;
+                const y = tile.y + cell.j * CELL;
+                let a = 0;
+
+                if (nearSheen) {
+                    const d = Math.abs((x + y * 0.6) - sheen);
+                    if (d < sheenW) a += (1 - d / sheenW) * 0.13;
                 }
-            }
-        }
-    }
-
-    function drawPixelGrid() {
-        const w = pixelCanvas.width / (window.devicePixelRatio || 1);
-        const h = pixelCanvas.height / (window.devicePixelRatio || 1);
-        pctx.clearRect(0, 0, w, h);
-
-        // Base layer: faint dots (always visible)
-        pctx.fillStyle = 'rgba(255, 255, 255, 0.035)';
-        for (let r = 0; r < rows; r++) {
-            for (let c = 0; c < cols; c++) {
-                pctx.fillRect(c * cellSize + cellSize / 2 - 1, r * cellSize + cellSize / 2 - 1, 2, 2);
-            }
-        }
-
-        // Active layer: lit squares near cursor
-        for (let r = 0; r < rows; r++) {
-            for (let c = 0; c < cols; c++) {
-                const cell = cells[r * cols + c];
-                if (cell.alpha > 0.01) {
-                    pctx.globalAlpha = cell.alpha;
-                    pctx.fillStyle = cell.color;
-                    pctx.fillRect(c * cellSize + 3, r * cellSize + 3, cellSize - 6, cellSize - 6);
-                    cell.alpha *= fadeRate;
+                if (nearCursor) {
+                    const dx = (x - cx) * 0.85;
+                    const dy = y - cy;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < LIGHT_R) {
+                        const f = 1 - dist / LIGHT_R;
+                        a += f * f * (cell.w === 2 ? 0.62 : 0.46);
+                    }
                 }
+                if (a > 0.02) floatRect(ctx, x, y, Math.min(a, 0.9), a > 0.5 ? GLINT : GOLD);
             }
         }
-        pctx.globalAlpha = 1;
+
+        requestAnimationFrame(frame);
     }
 
-    function pixelLoop() {
-        lightUpNearCursor();
-        drawPixelGrid();
-        requestAnimationFrame(pixelLoop);
-    }
+    window.addEventListener('pointermove', (e) => { cx = e.clientX; cy = e.clientY; }, { passive: true });
+    window.addEventListener('pointerleave', () => { cx = -9999; cy = -9999; });
 
-    window.addEventListener('mousemove', (e) => {
-        cursorX = e.clientX;
-        cursorY = e.clientY;
-        // Hide the first-visit cursor hint as soon as the user actually moves
-        const hint = document.getElementById('cursor-hint');
-        if (hint && !hint.dataset.dismissed) {
-            hint.dataset.dismissed = 'true';
-            hint.style.opacity = '0';
-            setTimeout(() => hint.remove(), 400);
-        }
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resize, 150);
     });
 
-    window.addEventListener('resize', resizePixelCanvas);
-
-    resizePixelCanvas();
-    requestAnimationFrame(pixelLoop);
-}
+    resize();
+    if (!prefersReducedMotion) requestAnimationFrame(frame);
+})();
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    // =========================
-    // NAV — Kuala Lumpur local time + elevation on scroll
-    // =========================
+    /* ========================================================
+       THE PROOF NUMBERS count themselves up. They are what a
+       recruiter scans first, so they should arrive, not sit.
+       ======================================================== */
+    const stats = document.querySelectorAll('.stat-num');
+    if (stats.length && !prefersReducedMotion && 'IntersectionObserver' in window) {
+        const countUp = (el) => {
+            // the suffix (x, +) lives in an <em>; only the number moves
+            const node = el.firstChild;
+            if (!node || node.nodeType !== 3) return;
+            const target = parseInt(node.textContent, 10);
+            if (!isFinite(target)) return;
+            const dur = 900;
+            const t0 = performance.now();
+            const tick = (now) => {
+                const k = Math.min(1, (now - t0) / dur);
+                const eased = 1 - Math.pow(1 - k, 3);
+                node.textContent = String(Math.round(target * eased));
+                if (k < 1) requestAnimationFrame(tick);
+            };
+            node.textContent = '0';
+            requestAnimationFrame(tick);
+        };
+        const statObs = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                countUp(entry.target);
+                statObs.unobserve(entry.target);
+            });
+        }, { threshold: 0.6 });
+        stats.forEach((el) => statObs.observe(el));
+    }
+
+    /* ========================================================
+       HOW FAR THROUGH THE BOLT — the selvedge thread fills as
+       the page is read, with a bunga at the leading edge.
+       ======================================================== */
+    const readThread = document.getElementById('selvedge-thread');
+    if (readThread) {
+        let queued = false;
+        const paintRead = () => {
+            const span = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = span > 0 ? (window.scrollY / span) * 100 : 0;
+            readThread.style.setProperty('--read', Math.min(100, Math.max(0, pct)) + '%');
+            queued = false;
+        };
+        window.addEventListener('scroll', () => {
+            if (queued) return;
+            queued = true;
+            requestAnimationFrame(paintRead);
+        }, { passive: true });
+        paintRead();
+    }
+
+    /* ========================================================
+       NAV — Kuala Lumpur time, and a shadow once you scroll
+       ======================================================== */
     const navTime = document.getElementById('nav-time');
     if (navTime) {
         const fmt = new Intl.DateTimeFormat('en-GB', {
-            timeZone: 'Asia/Kuala_Lumpur',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false
+            timeZone: 'Asia/Kuala_Lumpur', hour: '2-digit', minute: '2-digit', hour12: false
         });
         const tick = () => { navTime.textContent = `KL ${fmt.format(new Date())}`; };
         tick();
@@ -135,35 +249,35 @@ document.addEventListener('DOMContentLoaded', function () {
     const subhead = document.querySelector('.subhead');
     if (subhead) {
         let scrolled = false;
-        let scrollTicking = false;
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            if (scrollTicking) return;
-            scrollTicking = true;
+            if (ticking) return;
+            ticking = true;
             requestAnimationFrame(() => {
-                const shouldBeScrolled = window.scrollY > 40;
-                if (shouldBeScrolled !== scrolled) {
-                    scrolled = shouldBeScrolled;
-                    subhead.style.boxShadow = scrolled ? '0 10px 40px -10px rgba(0, 0, 0, 0.6)' : 'none';
+                const should = window.scrollY > 40;
+                if (should !== scrolled) {
+                    scrolled = should;
+                    subhead.style.boxShadow = scrolled ? '0 14px 34px -22px rgba(0, 0, 0, 0.8)' : 'none';
                 }
-                scrollTicking = false;
+                ticking = false;
             });
         }, { passive: true });
     }
 
-    // =========================
-    // EXPERIENCE MODAL (about.html — loads /experiences/*.html partials)
-    // =========================
+    /* ========================================================
+       EXPERIENCE MODAL — loads /experiences/*.html partials
+       ======================================================== */
     const modal = document.getElementById('experienceModal');
     const modalContent = document.getElementById('modalContent');
     const clickableCards = document.querySelectorAll('.timeline-card.clickable');
-
     let activeFetch = null;
+
     function loadExperienceDetail(experienceId) {
         if (!modal || !modalContent) return;
         if (activeFetch) activeFetch.abort();
         activeFetch = new AbortController();
 
-        modal.classList.add('active');
+        modal.classList.add('open');
         document.body.style.overflow = 'hidden';
         modalContent.innerHTML = '<div class="experience-detail"><div class="detail-body"><p>Loading…</p></div></div>';
 
@@ -180,14 +294,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (error.name === 'AbortError') return;
                 modalContent.innerHTML = `
                     <div class="experience-detail">
-                        <div class="detail-header">
-                            <h2>Content not available</h2>
-                        </div>
-                        <div class="detail-body">
-                            <p>Sorry, the detailed information for this experience is currently unavailable.</p>
-                        </div>
-                    </div>
-                `;
+                        <div class="detail-header"><h2>Content not available</h2></div>
+                        <div class="detail-body"><p>Sorry, the detail for this experience could not be loaded.</p></div>
+                    </div>`;
                 console.error('Error loading experience:', error);
             });
     }
@@ -195,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function closeModal() {
         if (!modal) return;
         if (activeFetch) activeFetch.abort();
-        modal.classList.remove('active');
+        modal.classList.remove('open');
         document.body.style.overflow = '';
     }
 
@@ -214,42 +323,39 @@ document.addEventListener('DOMContentLoaded', function () {
     if (modal) {
         modal.querySelectorAll('.modal-close, .modal-overlay').forEach(el => el.addEventListener('click', closeModal));
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+            if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
         });
     }
 
-    // =========================
-    // SCROLL REVEAL — IntersectionObserver, staggered per sibling group
-    // =========================
+    /* ========================================================
+       REVEAL — rows arrive the way a shuttle lays a pick
+       ======================================================== */
     const revealTargets = document.querySelectorAll(
-        '.case, .timeline-card, .award-card, .skill-group, .achievements-list li, .testimonial-card, .hover-list-item, .currently-list li'
+        '.case, .timeline-card, .award-card, .skill-group, .achievements-list li, .testimonial-card, .hover-list-item, .currently-list li, .more-list li, .hero-stats li, .feat-card'
     );
     if (!prefersReducedMotion && 'IntersectionObserver' in window && revealTargets.length) {
         const perParent = new Map();
         revealTargets.forEach((el) => {
             const idx = perParent.get(el.parentElement) || 0;
             perParent.set(el.parentElement, idx + 1);
-            el.style.setProperty('--reveal-delay', `${Math.min(idx, 8) * 0.07}s`);
+            el.style.transitionDelay = `${Math.min(idx, 8) * 0.07}s`;
             el.classList.add('reveal');
         });
-
-        const revealObserver = new IntersectionObserver((entries) => {
+        const io = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    revealObserver.unobserve(entry.target);
+                    io.unobserve(entry.target);
                 }
             });
         }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-
-        revealTargets.forEach(el => revealObserver.observe(el));
+        revealTargets.forEach(el => io.observe(el));
     }
 
-    // =========================
-    // CASE STUDIES (projects.html) — inline accordion + sticky index
-    // =========================
+    /* ========================================================
+       CASE STUDIES — inline accordion + sticky index
+       ======================================================== */
     const cases = document.querySelectorAll('.case');
-
     if (cases.length) {
         const setOpen = (c, open) => {
             c.classList.toggle('open', open);
@@ -257,10 +363,58 @@ document.addEventListener('DOMContentLoaded', function () {
             if (btn) btn.setAttribute('aria-expanded', String(open));
         };
 
+        // How far down the sticky header reaches, so the panel opens below it
+        const headroom = () => {
+            const bar = document.querySelector('.subhead');
+            return (bar ? bar.offsetHeight : 68) + 16;
+        };
+
+        /* The panel used to unfold silently below the fold, and a reader had
+           no reason to think anything had happened. Now the page follows the
+           reveal: the top of the detail is carried up under the header while
+           it opens, and the sections inside arrive one after another. The
+           page only ever moves forward, never back, so a case that is already
+           on screen does not jump. */
+        const followReveal = (c) => {
+            const detail = c.querySelector('.case-detail');
+            if (!detail) return;
+            setTimeout(() => {
+                const top = detail.getBoundingClientRect().top;
+                if (top > headroom() + 40) {
+                    window.scrollTo({
+                        top: window.scrollY + top - headroom(),
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                    });
+                }
+                // land assistive tech on the content that just appeared
+                detail.setAttribute('tabindex', '-1');
+                detail.focus({ preventScroll: true });
+            }, 140);
+        };
+
         cases.forEach(c => {
             const btn = c.querySelector('.case-toggle');
             const media = c.querySelector('.case-media');
-            const toggle = () => setOpen(c, !c.classList.contains('open'));
+            const toggle = () => {
+                const open = !c.classList.contains('open');
+                setOpen(c, open);
+                if (open) {
+                    followReveal(c);
+                } else {
+                    // Collapsing shortens the page, so the browser drops the
+                    // reader somewhere arbitrary. Put them back on the card
+                    // they just closed instead.
+                    setTimeout(() => {
+                        const top = c.getBoundingClientRect().top;
+                        if (top < headroom()) {
+                            window.scrollTo({
+                                top: window.scrollY + top - headroom(),
+                                behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                            });
+                        }
+                    }, 140);
+                }
+            };
             if (btn) btn.addEventListener('click', toggle);
             if (media) {
                 media.addEventListener('click', toggle);
@@ -270,17 +424,17 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Deep link: projects.html#case-skala → scroll to it and open the write-up
         const openFromHash = () => {
             const target = location.hash && document.querySelector(`.case${location.hash}`);
             if (!target) return;
             setOpen(target, true);
-            setTimeout(() => target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' }), 60);
+            setTimeout(() => target.scrollIntoView({
+                behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start'
+            }), 60);
         };
         openFromHash();
         window.addEventListener('hashchange', openFromHash);
 
-        // Sticky index: highlight the project currently in view
         const navLinks = document.querySelectorAll('.case-nav-link');
         if (navLinks.length && 'IntersectionObserver' in window) {
             const byId = new Map([...navLinks].map(a => [a.getAttribute('href').slice(1), a]));
@@ -300,9 +454,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // =========================
-    // CONTACT TOGGLE — click reveals the email address; click again hides it
-    // =========================
+    /* ========================================================
+       CONTACT — click reveals the address and copies it
+       ======================================================== */
     document.querySelectorAll('.contact-toggle').forEach(btn => {
         const span = btn.querySelector('.contact-text');
         const original = btn.dataset.default;
@@ -310,15 +464,13 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.addEventListener('click', () => {
             const isRevealed = btn.classList.toggle('revealed');
             span.textContent = isRevealed ? revealed : original;
-            if (isRevealed && navigator.clipboard) {
-                navigator.clipboard.writeText(revealed).catch(() => {});
-            }
+            if (isRevealed && navigator.clipboard) navigator.clipboard.writeText(revealed).catch(() => { });
         });
     });
 
-    // =========================
-    // RESUME VIEWER MODAL
-    // =========================
+    /* ========================================================
+       RESUME VIEWER
+       ======================================================== */
     const resumeBtn = document.getElementById('resumeBtn');
     const resumeModal = document.getElementById('resumeModal');
     const resumeFrame = document.getElementById('resumeFrame');
@@ -329,103 +481,39 @@ document.addEventListener('DOMContentLoaded', function () {
         if (resumeFrame && !resumeFrame.getAttribute('src')) {
             resumeFrame.setAttribute('src', `${RESUME_SRC}#toolbar=1&navpanes=0`);
         }
-        resumeModal.classList.add('active');
+        resumeModal.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
-
     function closeResume() {
         if (!resumeModal) return;
-        resumeModal.classList.remove('active');
+        resumeModal.classList.remove('open');
         document.body.style.overflow = '';
     }
-
     if (resumeBtn) resumeBtn.addEventListener('click', openResume);
     if (resumeModal) {
         resumeModal.querySelectorAll('[data-resume-close]').forEach(el => el.addEventListener('click', closeResume));
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && resumeModal.classList.contains('active')) closeResume();
+            if (e.key === 'Escape' && resumeModal.classList.contains('open')) closeResume();
         });
     }
 
-    // =========================
-    // SESSION LOG ANIMATION — reveals each line one at a time, like a real shell
-    // =========================
-    const terminalBody = document.querySelector('.terminal-body');
-    if (terminalBody && !prefersReducedMotion) {
-        const lines = terminalBody.children;
-        for (const line of lines) line.style.opacity = '0';
+    /* ========================================================
+       KAD TEBUK — the punch card reads itself row by row,
+       the way a Jacquard loom feeds one card per pick
+       ======================================================== */
+    const cardBody = document.querySelector('.terminal-body');
+    if (cardBody && !prefersReducedMotion) {
+        const rows = cardBody.children;
+        for (const row of rows) row.style.opacity = '0';
         let i = 0;
-        function revealNext() {
-            if (i >= lines.length) return;
-            lines[i].style.transition = 'opacity 0.25s ease';
-            lines[i].style.opacity = '1';
-            const isCommand = lines[i].classList.contains('terminal-line');
+        (function feed() {
+            if (i >= rows.length) return;
+            rows[i].style.transition = 'opacity 0.25s ease';
+            rows[i].style.opacity = '1';
+            const isCommand = rows[i].classList.contains('terminal-line');
             i++;
-            setTimeout(revealNext, isCommand ? 300 : 200);
-        }
-        setTimeout(revealNext, 900);
+            setTimeout(feed, isCommand ? 300 : 200);
+        })();
     }
 
-    // =========================
-    // EDITORIAL HOVER REVEAL — one floating preview follows the cursor over list rows
-    // — data-image → real image; data-preview → tinted card with an italic label
-    // =========================
-    const hoverImage = document.getElementById('hover-image');
-    const hoverImageLabel = document.getElementById('hover-image-label');
-    const hoverLists = document.querySelectorAll('.hover-list');
-    const supportsHover = window.matchMedia('(hover: hover)').matches;
-
-    if (hoverLists.length && hoverImage && !prefersReducedMotion && supportsHover) {
-        let hx = 0;
-        let hy = 0;
-        let hoverTicking = false;
-        const previewClasses = ['preview-about', 'preview-education', 'preview-work', 'preview-fertilemate', 'label-only'];
-
-        function paintHoverPosition() {
-            hoverImage.style.setProperty('--hover-x', hx + 'px');
-            hoverImage.style.setProperty('--hover-y', hy + 'px');
-            hoverTicking = false;
-        }
-
-        hoverLists.forEach(list => {
-            list.addEventListener('mousemove', (e) => {
-                hx = e.clientX;
-                hy = e.clientY;
-                if (hoverTicking) return;
-                hoverTicking = true;
-                requestAnimationFrame(paintHoverPosition);
-            });
-        });
-
-        function clearPreviewClasses() {
-            previewClasses.forEach(cls => hoverImage.classList.remove(cls));
-        }
-
-        document.querySelectorAll('.hover-list-item').forEach(item => {
-            const src = item.dataset.image;
-            const preview = item.dataset.preview;
-
-            if (src) {
-                const preload = new Image();
-                preload.src = src;
-            }
-
-            item.addEventListener('mouseenter', () => {
-                clearPreviewClasses();
-                if (src) {
-                    hoverImage.style.backgroundImage = `url("${src}")`;
-                    if (hoverImageLabel) hoverImageLabel.textContent = '';
-                    hoverImage.classList.add('active');
-                } else if (preview) {
-                    hoverImage.style.backgroundImage = '';
-                    hoverImage.classList.add(`preview-${preview}`, 'label-only', 'active');
-                    if (hoverImageLabel) hoverImageLabel.textContent = preview;
-                }
-            });
-
-            item.addEventListener('mouseleave', () => {
-                hoverImage.classList.remove('active');
-            });
-        });
-    }
 });

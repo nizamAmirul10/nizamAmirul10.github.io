@@ -10,7 +10,7 @@
   <!-- SEO -->
   <meta name="description" content="About Shazlin Nizam — background, skills, and journey as a Solution & Mobile Developer." />
   <meta name="author" content="Shazlin Nizam" />
-  <meta name="theme-color" content="#0b0b0c" />
+  <meta name="theme-color" content="#f2ecde" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="profile" />
@@ -28,20 +28,25 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Sacramento&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
   <a href="#about" class="skip-link">Skip to content</a>
 
-  <!-- Site-wide cursor-reactive pixel grid background -->
-  <canvas id="pixel-canvas" class="pixel-bg" aria-hidden="true"></canvas>
+  <!-- Selvedge — the finished edges of the cloth -->
+  <div class="selvedge selvedge--left" aria-hidden="true"></div>
+  <div class="selvedge selvedge--right" aria-hidden="true"></div>
+
+  <!-- The loom: a live songket weave. The cursor is the light source;
+       the gold supplementary weft is what catches it. -->
+  <canvas id="tenun-canvas" class="tenun-bg" aria-hidden="true"></canvas>
 
   <!-- TOP NAV -->
   <header class="subhead">
     <nav class="nav" aria-label="Primary">
-      <a href="index.html" class="nav-brand" aria-label="Shazlin Nizam — home">SN<span>.</span></a>
+      <a href="index.html" class="nav-brand" aria-label="Shazlin Nizam — home"><span class="brand-weave" aria-hidden="true"><svg class="brand-mark" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="5" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="5" y="2" width="1" height="1"/><rect x="6" y="2" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="5" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="4" y="4" width="1" height="1"/><rect x="7" y="4" width="1" height="1"/><rect x="1" y="5" width="1" height="1"/><rect x="2" y="5" width="1" height="1"/><rect x="3" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="9" y="5" width="1" height="1"/><rect x="10" y="5" width="1" height="1"/><rect x="1" y="6" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="5" y="6" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="9" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/><rect x="4" y="7" width="1" height="1"/><rect x="7" y="7" width="1" height="1"/><rect x="3" y="8" width="1" height="1"/><rect x="5" y="8" width="1" height="1"/><rect x="6" y="8" width="1" height="1"/><rect x="8" y="8" width="1" height="1"/><rect x="5" y="9" width="1" height="1"/><rect x="6" y="9" width="1" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/></svg></span><span class="brand-name">Shazlin Nizam</span></a>
       <div class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link active" aria-current="page">About</a>
@@ -60,14 +65,62 @@
       <header class="page-head">
         <div>
           <span class="eyebrow">01 — About</span>
+          <span class="eyebrow-my">tentang saya</span>
           <h1 class="page-title">About <em>me</em>.</h1>
         </div>
         <p class="page-sub">Mobile developer, UiTM Mobile Computing graduate, two-time gold award winner. The longer story, skills and all.</p>
       </header>
       <div class="about-content">
+        <figure class="portrait portrait--about">
+          <div class="portrait-frame">
+            <img src="images/me.jpg" alt="Shazlin Nizam, Mobile Developer, on the left" class="profile-image" width="960" height="1280" fetchpriority="high">
+          </div>
+          <figcaption class="portrait-caption">
+            <span>Kuala Lumpur, MY</span>
+            <span>Flutter · SwiftUI · Java</span>
+          </figcaption>
+        </figure>
+
         <p class="about-text">
           Hi, I'm Nizam — a Mobile Developer at <strong>Zen Computer System Sdn Bhd</strong>. I build production iOS and Android apps with a focus on cross-platform development with Flutter and native platform optimisation.
         </p>
+
+        <!-- HOW I WORK — the part hiring managers screen for and almost
+             never find: who owns the release, how performance is handled,
+             and whether the candidate has met a real security bar. Every
+             line here is drawn from shipped work, not aspiration. -->
+        <h3 id="how-i-work" class="about-subtitle">How I work</h3>
+        <div class="practice-grid">
+
+          <div class="practice">
+            <span class="practice-num">01</span>
+            <h4>I own the release, not just the feature</h4>
+            <p>Both of my production apps went to the App Store and Google Play with me running the release. I set up the iOS build from scratch for TestFlight, bundle identifiers, pods and plugin registration included, and raised the Android app to target SDK 36. I built the in-app update flow and the version-gate endpoint that decides when an old client must upgrade.</p>
+            <span class="practice-tags"><span class="tag">Play Console</span><span class="tag">TestFlight</span><span class="tag">Signing</span><span class="tag">Version gating</span></span>
+          </div>
+
+          <div class="practice">
+            <span class="practice-num">02</span>
+            <h4>Performance is a field requirement, not a polish pass</h4>
+            <p>SKALA is used by officers on site, on mid-range phones, often on a weak connection. Heavy filtering, sorting and CSV parsing run in isolates so the UI thread stays free. Photos are compressed and resized before upload. Lists are paginated and lazy-loaded behind shimmer placeholders, search is debounced, and draft and session caches mean an officer keeps their work when the signal drops.</p>
+            <span class="practice-tags"><span class="tag">Isolates</span><span class="tag">Offline-first</span><span class="tag">Lazy loading</span><span class="tag">Caching</span></span>
+          </div>
+
+          <div class="practice">
+            <span class="practice-num">03</span>
+            <h4>I have shipped to a government security bar</h4>
+            <p>MyIBJKM holds citizens' family records and disaster-relief data, so it had to clear JKM's requirements. Local storage is SQLCipher with the key held in the Android Keystore. Sessions are signed tokens, the PHP endpoints use prepared statements, and the app ships with a locked-down network security config. On SKALA, authentication is JWT with refresh tokens alongside JKR's single sign-on.</p>
+            <span class="practice-tags"><span class="tag">SQLCipher</span><span class="tag">Keystore</span><span class="tag">JWT refresh</span><span class="tag">SSO</span></span>
+          </div>
+
+          <div class="practice">
+            <span class="practice-num">04</span>
+            <h4>Architecture chosen so features land on both platforms at once</h4>
+            <p>SKALA separates business logic from UI with BLoC across five user roles and more than forty endpoints, so a change ships to iOS and Android together rather than twice. On MyIBJKM the opposite call was right: two native codebases already served a live government app, so I upgraded them in place instead of risking a rewrite.</p>
+            <span class="practice-tags"><span class="tag">BLoC</span><span class="tag">Native Android</span><span class="tag">SwiftUI</span><span class="tag">REST</span></span>
+          </div>
+
+        </div>
 
         <!-- SKILLS — brand logos via devicon CDN, no expertise tiers -->
         <h3 id="skills" class="about-subtitle">Skills</h3>
@@ -180,32 +233,7 @@
           </div>
         </div>
 
-        <h3 class="about-subtitle">Programs &amp; Events</h3>
-        <ul class="achievements-list">
-          <li><span class="ach-tag">2024</span> The Marvels of Python: The Power of Machine Learning <em>(Participant)</em></li>
-          <li><span class="ach-tag">2024</span> Cyber Threats Unveiled: Recognizing &amp; Responding to Online Dangers <em>(Participant)</em></li>
-          <li><span class="ach-tag">2023</span> Career Talk Internship Etiquette <em>(Organiser)</em></li>
-          <li><span class="ach-tag">2023</span> Pride Showcase 8.0 <em>(Participant)</em></li>
-          <li><span class="ach-tag">2023</span> Online Database for Literature <em>(Participant)</em></li>
-          <li><span class="ach-tag">2023</span> CanvaJer <em>(Organiser)</em></li>
-        </ul>
 
-        <!-- TESTIMONIAL -->
-        <div class="testimonial-card">
-          <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
-          </svg>
-          <p class="testimonial-quote">
-            "Why build an app? I think because we have to be able to create long-lasting relationships with our users. We need to be able to not only offer services that we create but to actually listen to the user in every step"
-          </p>
-          <div class="testimonial-author">
-            <img src="images/testimonial-1.jpg" alt="Supervisor"
-              onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0'" />
-            <div class="testimonial-author-info">
-              <strong>Joaquín Flores</strong>
-              <span>Global Online Vice President at Kavak</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -229,7 +257,7 @@
     <div class="footer-grid">
       <div>
         <p class="footer-big">Let's build<br>something <em>useful</em>.</p>
-        <p class="footer-blurb">Open to remote / hybrid Solution &amp; Mobile Developer roles.</p>
+        <p class="footer-blurb">Open to remote / hybrid Solution &amp; Mobile Developer roles. Woven in Kuala Lumpur.</p>
       </div>
       <div class="footer-col">
         <h4>Pages</h4>

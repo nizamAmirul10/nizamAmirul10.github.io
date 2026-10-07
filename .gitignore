@@ -8,3 +8,7 @@ CV.pdf
 Thumbs.db
 .vscode/
 .idea/
+
+# Design variants — local comparison copies, not part of the published site.
+# The live design lives in the repo root; design/05-tenun-dark is the way back.
+design/

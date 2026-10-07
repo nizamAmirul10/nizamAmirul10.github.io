@@ -10,7 +10,7 @@
   <!-- SEO -->
   <meta name="description" content="Work experience of Shazlin Nizam — Solution & Mobile Developer roles, responsibilities, and projects shipped." />
   <meta name="author" content="Shazlin Nizam" />
-  <meta name="theme-color" content="#0b0b0c" />
+  <meta name="theme-color" content="#f2ecde" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -28,20 +28,25 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Sacramento&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
   <a href="#work" class="skip-link">Skip to content</a>
 
-  <!-- Site-wide cursor-reactive pixel grid background -->
-  <canvas id="pixel-canvas" class="pixel-bg" aria-hidden="true"></canvas>
+  <!-- Selvedge — the finished edges of the cloth -->
+  <div class="selvedge selvedge--left" aria-hidden="true"></div>
+  <div class="selvedge selvedge--right" aria-hidden="true"></div>
+
+  <!-- The loom: a live songket weave. The cursor is the light source;
+       the gold supplementary weft is what catches it. -->
+  <canvas id="tenun-canvas" class="tenun-bg" aria-hidden="true"></canvas>
 
   <!-- TOP NAV -->
   <header class="subhead">
     <nav class="nav" aria-label="Primary">
-      <a href="index.html" class="nav-brand" aria-label="Shazlin Nizam — home">SN<span>.</span></a>
+      <a href="index.html" class="nav-brand" aria-label="Shazlin Nizam — home"><span class="brand-weave" aria-hidden="true"><svg class="brand-mark" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="5" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="5" y="2" width="1" height="1"/><rect x="6" y="2" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="5" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="4" y="4" width="1" height="1"/><rect x="7" y="4" width="1" height="1"/><rect x="1" y="5" width="1" height="1"/><rect x="2" y="5" width="1" height="1"/><rect x="3" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="9" y="5" width="1" height="1"/><rect x="10" y="5" width="1" height="1"/><rect x="1" y="6" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="5" y="6" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="9" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/><rect x="4" y="7" width="1" height="1"/><rect x="7" y="7" width="1" height="1"/><rect x="3" y="8" width="1" height="1"/><rect x="5" y="8" width="1" height="1"/><rect x="6" y="8" width="1" height="1"/><rect x="8" y="8" width="1" height="1"/><rect x="5" y="9" width="1" height="1"/><rect x="6" y="9" width="1" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/></svg></span><span class="brand-name">Shazlin Nizam</span></a>
       <div class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link">About</a>
@@ -60,6 +65,7 @@
       <header class="page-head">
         <div>
           <span class="eyebrow">03 — Work</span>
+          <span class="eyebrow-my">pengalaman kerja</span>
           <h1 class="page-title">Where I've <em>shipped</em>.</h1>
         </div>
         <p class="page-sub">Two roles, both on live products with real users — one in government services, one in health-tech.</p>
@@ -70,7 +76,7 @@
           <div class="timeline-content">
             <h3>Mobile Developer</h3>
             <div class="institution">Zen Computer System Sdn Bhd</div>
-            <div class="period">2025 – Present</div>
+            <div class="period">2025 – Present <span class="period-note">· 3-month notice</span></div>
             <ul>
               <li>Flutter frontend developer on <strong>SKALA 2.0</strong>, JKR's project-monitoring app — role-based dashboards, site diaries, BHTB verification with e-signatures, charts and PDF reports, integrated with a teammate's Laravel REST API</li>
               <li>Performance work on SKALA: isolates for heavy filtering and CSV parsing, image compression before upload, paginated lazy lists, caching and debounced search</li>
@@ -106,7 +112,7 @@
     <div class="footer-grid">
       <div>
         <p class="footer-big">Let's build<br>something <em>useful</em>.</p>
-        <p class="footer-blurb">Open to remote / hybrid Solution &amp; Mobile Developer roles.</p>
+        <p class="footer-blurb">Open to remote / hybrid Solution &amp; Mobile Developer roles. Woven in Kuala Lumpur.</p>
       </div>
       <div class="footer-col">
         <h4>Pages</h4>
